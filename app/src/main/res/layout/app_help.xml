@@ -1,0 +1,303 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tv26"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/colorBlack"
+            android:gravity="center_horizontal"
+            android:padding="15sp"
+            android:text="@string/sms_encrypted_commands"
+            android:textColor="#ffffffff" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tv27"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="10sp"
+            android:textColor="@color/colorBlack"
+            android:text="@string/to_send_an_encrypted_command_to_your_device_use_the_in_build_client_app_using_the_button_below" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/help_client"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/colorBlack"
+            android:layout_gravity="center_horizontal"
+            android:text="Open Captain Command Section" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tv1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/colorBlack"
+            android:gravity="center_horizontal"
+            android:padding="15sp"
+            android:text="@string/sms_unencrypted_commands"
+            android:textColor="#ffffffff" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tv2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/colorBlack"
+            android:padding="10sp"
+            android:text="@string/help_title" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tv3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:gravity="center_horizontal"
+            android:textColor="@color/colorBlack"
+            android:padding="10sp"
+            android:text="@string/help_sample"
+            android:textStyle="bold|italic" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <TableLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:shrinkColumns="*"
+                android:stretchColumns="*">
+                <!-- Row 1 with single column -->
+                <TableRow
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal">
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:id="@+id/tv6"
+                        android:layout_weight="1"
+                        android:gravity="left"
+                        android:textColor="@color/colorBlack"
+                        android:padding="10dip"
+                        android:text="@string/normal_mode" />
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:id="@+id/tv7"
+                        android:layout_weight="1"
+                        android:background="@color/colorPrimary"
+                        android:textColor="@color/colorBlack"
+                        android:padding="10dip"
+                        android:text="@string/captain_password_normal" />
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal">
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:id="@+id/tv8"
+                        android:layout_weight="1"
+                        android:gravity="left"
+                        android:padding="10dip"
+                        android:textColor="@color/colorBlack"
+                        android:text="@string/lock_display" />
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:id="@+id/tv9"
+                        android:layout_weight="1"
+                        android:background="@color/colorPrimary"
+                        android:padding="10dip"
+                        android:text="@string/captain_password_lockdisplay"
+                        android:textColor="#000000" />
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal">
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:id="@+id/tv10"
+                        android:layout_weight="1"
+                        android:gravity="left"
+                        android:textColor="@color/colorBlack"
+                        android:padding="10dip"
+                        android:text="@string/wifi_on" />
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:id="@+id/tv11"
+                        android:layout_weight="1"
+                        android:background="@color/colorPrimary"
+                        android:padding="10dip"
+                        android:text="@string/captain_password_wifion"
+                        android:textColor="#000000" />
+                </TableRow>
+
+<!--                <TableRow-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:gravity="center_horizontal">-->
+
+<!--                    <com.google.android.material.textview.MaterialTextView-->
+<!--                        android:id="@+id/tv12"-->
+<!--                        android:layout_weight="1"-->
+<!--                        android:gravity="left"-->
+<!--                        android:padding="10dip"-->
+<!--                        android:text="@string/wifi_off" />-->
+
+<!--                    <com.google.android.material.textview.MaterialTextView-->
+<!--                        android:id="@+id/tv13"-->
+<!--                        android:layout_weight="1"-->
+<!--                        android:background="@color/colorPrimary"-->
+<!--                        android:padding="10dip"-->
+<!--                        android:text="@string/captain_password_wifioff"-->
+<!--                        android:textColor="#000000" />-->
+<!--                </TableRow>-->
+
+<!--                <TableRow-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:gravity="center_horizontal">-->
+
+<!--                    <com.google.android.material.textview.MaterialTextView-->
+<!--                        android:id="@+id/tv14"-->
+<!--                        android:layout_weight="1"-->
+<!--                        android:gravity="left"-->
+<!--                        android:textColor="@color/colorBlack"-->
+<!--                        android:padding="10dip"-->
+<!--                        android:text="@string/wifi_name" />-->
+
+<!--                    <com.google.android.material.textview.MaterialTextView-->
+<!--                        android:id="@+id/tv15"-->
+<!--                        android:layout_weight="1"-->
+<!--                        android:background="@color/colorPrimary"-->
+<!--                        android:padding="10dip"-->
+<!--                        android:text="@string/captain_password_wifiname"-->
+<!--                        android:textColor="#000000" />-->
+<!--                </TableRow>-->
+
+                <TableRow
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal">
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:id="@+id/tv16"
+                        android:layout_weight="1"
+                        android:gravity="left"
+                        android:padding="10dip"
+                        android:textColor="@color/colorBlack"
+                        android:text="@string/ring" />
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:id="@+id/tv17"
+                        android:layout_weight="1"
+                        android:background="@color/colorPrimary"
+                        android:padding="10dip"
+                        android:text="@string/captain_password_ring"
+                        android:textColor="#000000" />
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal">
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:id="@+id/tv18"
+                        android:layout_weight="1"
+                        android:gravity="left"
+                        android:textColor="@color/colorBlack"
+                        android:padding="10dip"
+                        android:text="@string/stop" />
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:id="@+id/tv19"
+                        android:layout_weight="1"
+                        android:background="@color/colorPrimary"
+                        android:padding="10dip"
+                        android:text="@string/captain_password_stop"
+                        android:textColor="#000000" />
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal">
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:id="@+id/tv20"
+                        android:layout_weight="1"
+                        android:gravity="left"
+                        android:textColor="@color/colorBlack"
+                        android:padding="10dip"
+                        android:text="@string/location" />
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:id="@+id/tv21"
+                        android:layout_weight="1"
+                        android:background="@color/colorPrimary"
+                        android:padding="10dip"
+                        android:text="@string/captain_password_location"
+                        android:textColor="#000000" />
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal">
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:id="@+id/tv22"
+                        android:layout_weight="1"
+                        android:gravity="left"
+                        android:padding="10dip"
+                        android:textColor="@color/colorBlack"
+                        android:text="@string/sim_info" />
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:id="@+id/tv23"
+                        android:layout_weight="1"
+                        android:background="@color/colorPrimary"
+                        android:padding="10dip"
+                        android:text="@string/captain_password_siminfo"
+                        android:textColor="#000000" />
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal">
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:id="@+id/tv24"
+                        android:layout_weight="1"
+                        android:gravity="left"
+                        android:padding="10dip"
+                        android:textColor="@color/colorBlack"
+                        android:text="@string/phone_number" />
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:id="@+id/tv25"
+                        android:layout_weight="1"
+                        android:background="@color/colorPrimary"
+                        android:padding="10dip"
+                        android:text="@string/captain_password_phonenumber"
+                        android:textColor="#000000" />
+                </TableRow>
+            </TableLayout>
+        </LinearLayout>
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/act_welcome_next_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/colorBlack"
+            android:layout_gravity="center_horizontal"
+            android:text="@string/next" />
+    </LinearLayout>
+</ScrollView>

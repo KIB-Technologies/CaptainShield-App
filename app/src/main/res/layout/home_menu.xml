@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="207dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="20dp"
+        android:src="@drawable/captainshield"/>
+    <!-- new table -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TableLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingHorizontal="10dp"
+            android:shrinkColumns="*"
+            android:stretchColumns="*">
+            <!-- Row 1 with single column -->
+            <TableRow
+                android:layout_height="wrap_content"
+                android:layout_width="fill_parent"
+                android:gravity="center_horizontal">
+                <com.google.android.material.textview.MaterialTextView
+                    android:text="@string/phone_number_1"
+                    android:id="@+id/title1"
+                    android:textColor="@color/colorBlack"
+                    android:layout_weight="1"
+                    android:padding="10dip"
+                    android:gravity="left"/>
+                <com.google.android.material.textview.MaterialTextView
+                    android:text="Large Text"
+                    android:id="@+id/key_1_phone1"
+                    android:layout_weight="1"
+                    android:background="@color/light_white"
+                    android:textColor="@color/colorBlack"
+                    android:padding="10dip"
+                    android:gravity="center_horizontal" />
+            </TableRow>
+
+            <TableRow
+                android:layout_height="wrap_content"
+                android:layout_width="fill_parent"
+                android:gravity="center_horizontal">
+                <com.google.android.material.textview.MaterialTextView
+                    android:text="@string/phone_number_2"
+                    android:id="@+id/title2"
+                    android:layout_weight="1"
+                    android:textColor="@color/colorBlack"
+                    android:padding="10dip"
+                    android:gravity="left"/>
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:text="@string/device"
+                    android:id="@+id/key_2_phone2"
+                    android:layout_weight="1"
+                    android:background="@color/light_white"
+                    android:textColor="@color/colorBlack"
+                    android:padding="10dip"
+                    android:gravity="center_horizontal" />
+            </TableRow>
+            <TableRow
+                android:layout_height="wrap_content"
+                android:layout_width="fill_parent"
+                android:gravity="center_horizontal">
+                <com.google.android.material.textview.MaterialTextView
+                    android:text="@string/app_password"
+                    android:id="@+id/title3"
+                    android:textColor="@color/colorBlack"
+                    android:layout_weight="1"
+                    android:padding="10dip"
+                    android:gravity="left"/>
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:text="@string/device"
+                    android:id="@+id/key_3_app"
+                    android:layout_weight="1"
+                    android:background="@color/light_white"
+                    android:textColor="@color/colorBlack"
+                    android:padding="10dip"
+                    android:gravity="center_horizontal" />
+            </TableRow>
+            <TableRow
+                android:layout_height="wrap_content"
+                android:layout_width="fill_parent"
+                android:gravity="center_horizontal">
+                <com.google.android.material.textview.MaterialTextView
+                    android:text="@string/secure_password"
+                    android:id="@+id/title4"
+                    android:layout_weight="1"
+                    android:textColor="@color/colorBlack"
+                    android:padding="10dip"
+                    android:gravity="left"/>
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:text="@string/device"
+                    android:id="@+id/key_4_secure"
+                    android:layout_weight="1"
+                    android:background="@color/light_white"
+                    android:textColor="@color/colorBlack"
+                    android:padding="10dip"
+                    android:gravity="center_horizontal" />
+            </TableRow>
+            <TableRow
+                android:layout_height="wrap_content"
+                android:layout_width="fill_parent"
+                android:gravity="center_horizontal">
+                <com.google.android.material.textview.MaterialTextView
+                    android:text="@string/admin_service"
+                    android:id="@+id/title5"
+                    android:layout_weight="1"
+                    android:textColor="@color/colorBlack"
+                    android:padding="10dip"
+                    android:gravity="left"/>
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:text="@string/device"
+                    android:id="@+id/key_5_admin"
+                    android:layout_weight="1"
+                    android:background="@color/light_white"
+                    android:textColor="@color/colorBlack"
+                    android:padding="10dip"
+                    android:gravity="center_horizontal" />
+            </TableRow>
+        </TableLayout>
+    </LinearLayout>
+    <com.google.android.material.button.MaterialButton
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="20dp"
+        android:layout_gravity="center_horizontal"
+        android:textColor="@color/colorBlack"
+        android:layout_marginTop="50sp"
+        android:text="@string/next"
+        android:id="@+id/act_welcome_next_btn" />
+</LinearLayout>

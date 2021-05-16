@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        android:orientation="vertical"
+        android:background="@color/light_white">
+        <ImageView
+            android:layout_width="180dp"
+            android:layout_height="180dp"
+            android:id="@+id/imageView"
+            android:src="@drawable/captainshield"
+            android:layout_gravity="center_horizontal" />
+        <com.google.android.material.textview.MaterialTextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Thank You"
+            android:textSize="25sp"
+            android:layout_marginTop="20sp"
+            android:id="@+id/sub_welcome"
+            android:gravity="center_horizontal"
+            android:textColor="@color/colorBlack" />
+        <com.google.android.material.textview.MaterialTextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Captain Shield is ready to use.."
+            android:textSize="20sp"
+            android:layout_marginTop="20sp"
+            android:id="@+id/sub_welcome1"
+            android:gravity="center_horizontal"
+            android:textColor="@color/colorBlack" />
+    </LinearLayout>
+
+    <com.google.android.material.button.MaterialButton
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginTop="100sp"
+        android:textColor="@color/colorBlack"
+        android:text="finesh"
+        android:id="@+id/act_welcome_next_btn" />
+
+</LinearLayout>

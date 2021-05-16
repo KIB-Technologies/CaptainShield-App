@@ -1,0 +1,72 @@
+<resources>
+    <string name="app_name">Captain Shield</string>
+    <string name="drawer_open">Open Navigation Drawer</string>
+    <string name="drawer_close">Close Navigation Drawer</string>
+    <string name="login_text">Enter your password to login</string>
+
+    <!-- Activation-->
+    <string name="act_welcome_text">Follow the steps to setup your app for Captain Shield protection.
+        There are 4 more additional setup required to complete the activation process</string>
+    <string name="act_phone_text">Enter one or two phone number with country code eg (+91). Captain Shield will only accept commands from these phone numbers</string>
+    <string name="act_password_text">Enter passcode to open the captain shield application.</string>
+    <string name="act_password_secure_text">Enter a secret password, this password will be encrypted
+        on your device and gets validated every time when you send remote command</string>
+    <string name="act_device_admin">Activate Device Admin</string>
+    <!--DeviceAdmin-->
+    <string name="admin_description">Description</string>
+    <string name="add_admin_extra_text">Extra Test Goes Here</string>
+
+    <!--Command-->
+    <string name="command_1">captain</string>
+    <string name="help_title">Send command sms to your lost phone in the following format. Please note: only use this
+    option in-case of emergency or where the client app is not accessible. If this method is used then command/password may be shown
+    on the device lock screen</string>
+    <!--GCM-->
+
+    <string name="setting_sms_response">Send Response through SMS</string>
+    <string name="settings_sim_change">SIM Card Change Alert</string>
+    <string name="settings_info">Alerts are sent through SMS (Charges may apply as per your service provider),
+        it is recommended to activate a free SMS plan</string>
+    <string name="help_sample"><![CDATA[captain <space> password <space> command]]></string>
+    <string name="app_status">App Status</string>
+    <string name="phone_number_1">Phone Number 1</string>
+    <string name="phone_number_2">Phone Number 2</string>
+    <string name="device">Device</string>
+    <string name="app_password">App Passcode</string>
+    <string name="secure_password">Secure Password</string>
+    <string name="admin_service">Admin Service</string>
+    <string name="next">Next</string>
+    <string name="ente_mobile_number">Enter Mobile Number</string>
+    <string name="enter_other_mobile_number">Enter Other Mobile Number</string>
+    <string name="welcome">Welcome</string>
+    <string name="get_started">Get Started</string>
+    <string name="to">To</string>
+    <string name="your_password">Your password</string>
+    <string name="login">Login</string>
+    <string name="enter_your_captain_shield_passcode">Enter your Captain Shield Passcode</string>
+    <string name="secure_your_device_where_there_is_no_internet_access">Secure your device where there is no internet access</string>
+    <string name="normal_mode">Normal Mode</string>
+    <string name="captain_password_normal">captain password normal</string>
+    <string name="lock_display">Lock Display</string>
+    <string name="captain_password_phonenumber">captain password phonenumber</string>
+    <string name="phone_number">Phone Number</string>
+    <string name="captain_password_siminfo">captain password siminfo</string>
+    <string name="sim_info">SIM Info</string>
+    <string name="captain_password_location">captain password location</string>
+    <string name="location">Location</string>
+    <string name="captain_password_stop">captain password stop</string>
+    <string name="ring">Ring</string>
+    <string name="captain_password_ring">captain password ring</string>
+    <string name="stop">Ring Stop</string>
+    <string name="captain_password_wifiname">captain password wifiname</string>
+    <string name="wifi_name">Wifi Name</string>
+    <string name="captain_password_wifioff">captain password wifioff</string>
+    <string name="wifi_off">Wifi OFF</string>
+    <string name="captain_password_wifion">captain password wifion</string>
+    <string name="wifi_on">Wifi ON</string>
+    <string name="captain_password_lockdisplay">captain password lockdisplay</string>
+    <string name="sms_unencrypted_commands">SMS Unencrypted Commands</string>
+    <string name="to_send_an_encrypted_command_to_your_device_use_the_in_build_client_app_using_the_button_below">To send an encrypted command to your device, use the in-build client app using the button below</string>
+    <string name="sms_encrypted_commands">SMS Encrypted Commands</string>
+    <string name="turn_on_this_service_to_accept_lock_erase_and_other_admin_remote_commands">Turn on this service to accept lock, erase and other admin remote commands</string>
+</resources>

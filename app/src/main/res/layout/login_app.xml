@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/light_white">
+
+    <ImageView
+        android:layout_width="250dp"
+        android:layout_height="250dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="20dp"
+        android:src="@drawable/captainshield"/>
+
+    <ViewFlipper
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:flipInterval="5000"
+        android:autoStart="true"
+        android:inAnimation="@android:anim/slide_in_left"
+        android:outAnimation="@android:anim/slide_out_right"
+        android:animateFirstView="true">
+        <com.google.android.material.textview.MaterialTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/enter_your_captain_shield_passcode"
+            android:textColor="@color/colorPrimary"
+            android:padding="10sp"
+            android:id="@+id/login_text1"
+            android:layout_gravity="center_horizontal"
+            android:gravity="center_horizontal"/>
+    </ViewFlipper>
+
+    <EditText
+        android:layout_height="wrap_content"
+        android:layout_width="200sp"
+        android:textColor="@color/colorPrimary"
+        android:background="@drawable/edit_text_border"
+        android:maxLines="1"
+        android:textSize="20sp"
+        android:maxLength="15"
+        android:inputType="numberPassword"
+        android:paddingTop="10dp"
+        android:layout_gravity="center_horizontal"
+        android:gravity="center_horizontal"
+        android:hint="@string/your_password"
+        android:id="@+id/et_login"/>
+
+    <com.google.android.material.button.MaterialButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="20sp"
+        android:textColor="@color/colorBlack"
+        android:text="@string/login"
+        android:id="@+id/act_welcome_next_btn" />
+
+<!--    <Button-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_gravity="center_horizontal"-->
+<!--        android:text="Client Manager"-->
+<!--        android:id="@+id/client_btn" />-->
+
+</LinearLayout>
