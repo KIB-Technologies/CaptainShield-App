@@ -31,6 +31,8 @@ import android.widget.Toast;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.widget.SwitchCompat;
 
+import com.google.android.material.textfield.TextInputEditText;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -49,7 +51,8 @@ public class Welcome extends Fragment {
     private String info, onActRet, where, pOnAct;
     private Typeface tf;
     private Context context;
-    private EditText con1, con2, app, secure, login_pass, activation_key, registerNumber;
+    private EditText con1, con2, app, secure, /*login_pass*/ activation_key, registerNumber;
+    private TextInputEditText login_pass;
     private DevicePolicyManager mDPM;
     private ComponentName mDeviceApp;
     public DatabaseHelper myDb;

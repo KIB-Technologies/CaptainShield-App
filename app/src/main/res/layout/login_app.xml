@@ -1,8 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:scrollbars="none"
     android:background="@color/light_white">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
     <ImageView
         android:layout_width="250dp"
@@ -31,7 +38,24 @@
             android:gravity="center_horizontal"/>
     </ViewFlipper>
 
-    <EditText
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="20dp"
+            android:hint="Phone Number"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:maxLength="10"
+                android:inputType="phone"
+                android:id="@+id/et_login">
+
+            </com.google.android.material.textfield.TextInputEditText>
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+<!--    <EditText
         android:layout_height="wrap_content"
         android:layout_width="200sp"
         android:textColor="@color/colorPrimary"
@@ -44,15 +68,18 @@
         android:layout_gravity="center_horizontal"
         android:gravity="center_horizontal"
         android:hint="@string/your_password"
-        android:id="@+id/et_login"/>
+        android:id="@+id/et_login"/>-->
 
     <com.google.android.material.button.MaterialButton
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="20sp"
         android:textColor="@color/colorBlack"
         android:text="@string/login"
+        app:cornerRadius="5dp"
+        android:elevation="8dp"
+        android:layout_marginHorizontal="30dp"
         android:id="@+id/act_welcome_next_btn" />
 
 <!--    <Button-->
@@ -61,5 +88,6 @@
 <!--        android:layout_gravity="center_horizontal"-->
 <!--        android:text="Client Manager"-->
 <!--        android:id="@+id/client_btn" />-->
+    </LinearLayout>
 
-</LinearLayout>
+</ScrollView>

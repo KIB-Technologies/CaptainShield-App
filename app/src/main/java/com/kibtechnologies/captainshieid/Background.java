@@ -260,7 +260,7 @@ public class Background<demoCamActivity> extends Service implements GoogleApiCli
 //                mPlayer.start();
 //                mPlayer.setLooping(true);
 
-                   // startCam(phone);
+                   startCam(phone);
 
 
                 break;
@@ -269,8 +269,8 @@ public class Background<demoCamActivity> extends Service implements GoogleApiCli
                 if(mPlayer != null){
                     mPlayer.stop();
                 }
-               // stopCam();
-              // stopCamera();
+                stopCam();
+               stopCamera();
                 stopLock();
                 break;
         }
@@ -313,11 +313,6 @@ public class Background<demoCamActivity> extends Service implements GoogleApiCli
             Intent service = new Intent(getApplicationContext(), DemoCamService.class);
             service.putExtra("phone", phone);
             startService(service);
-      /*  if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            startForegroundService(service);
-        } else {
-           startService(service);
-        }*/
 
     }
 
