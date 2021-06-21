@@ -11,7 +11,7 @@
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="20dp"
         android:layout_marginBottom="20dp"
-        android:src="@drawable/captainshield"/>
+        android:src="@drawable/shield_logo_removebg_preview"/>
 
     <ViewFlipper
         android:layout_width="match_parent"

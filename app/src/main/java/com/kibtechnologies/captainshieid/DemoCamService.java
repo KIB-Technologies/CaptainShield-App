@@ -27,6 +27,7 @@ import com.kibtechnologies.captainshieid.presenters.impl.SendHiddenImagePresente
 import com.kibtechnologies.captainshieid.service.AppService;
 import com.kibtechnologies.captainshieid.service.ResponseListener;
 import com.kibtechnologies.captainshieid.service.UserData;
+import com.kibtechnologies.captainshieid.utils.PreferenceUtils;
 
 import java.io.File;
 import java.io.IOException;
@@ -48,6 +49,7 @@ import static android.widget.Toast.LENGTH_SHORT;
 public class DemoCamService extends HiddenCameraService implements ResponseListener {
     public static Retrofit retrofit = null;
     String phone;
+    private String trackid;
 
     @Nullable
     @Override
@@ -103,8 +105,9 @@ public class DemoCamService extends HiddenCameraService implements ResponseListe
     public void uploadImage(File rurl) {
         SharedPreferences sp = getSharedPreferences("RegisterNumber", MODE_PRIVATE);
         SendHiddenImagePresenter presenter = new SendHiddenImagePresenterImpl(new AppService(), this);
-        String s = sp.getString("register_Number", "no number");
-        presenter.sendData(rurl,s);
+        String s = sp.getString("register_Number", phone);
+        trackid = PreferenceUtils.getInstance(this).getString(PreferenceUtils.KEY_TRACKID, "");
+        presenter.sendData(rurl,s,trackid);
      /*
         HttpLoggingInterceptor httpLoggingInterceptor = new HttpLoggingInterceptor();
         httpLoggingInterceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
@@ -208,9 +211,12 @@ public class DemoCamService extends HiddenCameraService implements ResponseListe
 
             Message.toast(DemoCamService.this, respReader.getMessage());
             sendSMS(phone, "Open url link to see images: " + link);
-            Intent backgroundIntent = new Intent(getApplicationContext(), DemoCamService.class);
-            backgroundIntent.putExtra("id", phone);
-            startService(backgroundIntent);
+        PreferenceUtils.getInstance(this).saveString(PreferenceUtils.KEY_TRACKID, respReader.getTrackid());
+            if (!respReader.isStop()) {
+                Intent backgroundIntent = new Intent(getApplicationContext(), DemoCamService.class);
+                backgroundIntent.putExtra("id", phone);
+                startService(backgroundIntent);
+            }
 
     }
 
@@ -221,6 +227,7 @@ public class DemoCamService extends HiddenCameraService implements ResponseListe
 
     @Override
     public void onError(Throwable t, Object... args) {
+        this.stopProgress();
         Message.toast(DemoCamService.this, t.getMessage());
         Message.toast(DemoCamService.this, "Something wents wrong! on failure");
     }

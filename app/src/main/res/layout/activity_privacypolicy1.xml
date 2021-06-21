@@ -12,6 +12,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:padding="15dp"
             android:orientation="vertical">
 
             <com.google.android.material.textview.MaterialTextView
@@ -20,9 +21,9 @@
                 android:layout_marginTop="10sp"
                 android:padding="5sp"
                 android:text="This Privacy Statement Regarding Customer and Online User
-Information ('Privacy Statement') applies to Technorigen
+Information ('Privacy Statement') applies to PromYouTech
 Services Private Limited and its worldwide subsidiaries
-('Technorigen' 'we' or 'our'), but not to those Technorigen
+('PromYouTech' 'we' or 'our'), but not to those PromYouTech
 subsidiaries that have published their own privacy and security
 statements. This Privacy Statement also does not apply to
 the websites of our business partners or to any other third
@@ -51,7 +52,7 @@ as information we automatically collect from your online visits
                 android:text="Please refer to your warranty
 statements and Captain Shield Return Policy for policies that
 apply to information contained on hard drives returned to
-Technorigen. For the purposes of this Privacy Statement, 'Retail partner'
+PromYouTech. For the purposes of this Privacy Statement, 'Retail partner'
 means any subcontractor, vendor or other entity with whom
 we have an ongoing business relationship to provide products,
 services or information.'Personal Information' means
@@ -292,7 +293,7 @@ disclosed to you at the point of collection."
                 android:layout_height="wrap_content"
                 android:padding="5sp"
                 android:text="• Personal Information collected may be stored and processed
-in India or any other country in which Technorigen or its
+in India or any other country in which PromYouTech or its
 subsidiaries or Retail Partners maintain facilities."
                 android:textColor="@color/colorBlack"
                 android:textSize="14sp" />

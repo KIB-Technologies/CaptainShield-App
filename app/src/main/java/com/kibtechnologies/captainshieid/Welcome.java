@@ -30,8 +30,13 @@ import android.widget.Toast;
 
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.widget.SwitchCompat;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.textfield.TextInputEditText;
+import com.kibtechnologies.captainshieid.adapter.DashboardOptionsAdapter;
+import com.kibtechnologies.captainshieid.adapter.ItemClickListener;
+import com.kibtechnologies.captainshieid.utils.PreferenceUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -43,7 +48,7 @@ import retrofit2.Response;
 import static android.content.Context.MODE_PRIVATE;
 
 @TargetApi(Build.VERSION_CODES.HONEYCOMB)
-public class Welcome extends Fragment {
+public class Welcome extends Fragment  {
 
     View v;
     Communicator communicator;
@@ -59,6 +64,8 @@ public class Welcome extends Fragment {
     public SwitchCompat switONOFF;
     MyAdap myAdap;
     Cursor cursor;
+    private MainMenu menu;
+
 
     SharedPreferences sharedpreferences;
 
@@ -66,6 +73,7 @@ public class Welcome extends Fragment {
     public void onAttach(Activity activity) {
         super.onAttach(activity);
         communicator = (Communicator) activity;
+        menu = (MainMenu) activity;
     }
 
     @RequiresApi(api = Build.VERSION_CODES.M)
@@ -110,8 +118,8 @@ public class Welcome extends Fragment {
             if(welcomeKey != "no" &&  number != "no"){
                 info = "phone";
             }else {
-               // info = "welcome";
-                info = "phone";
+                info = "welcome";
+              //  info = "phone";
             }
             onActRet = "privacy";
         } else if ("Welcome".equals(id)) {
@@ -299,6 +307,10 @@ public class Welcome extends Fragment {
             TextView key3 = v.findViewById(R.id.key_3_app);
             TextView key4 = v.findViewById(R.id.key_4_secure);
             TextView key5 = v.findViewById(R.id.key_5_admin);
+            RecyclerView recyclerView = v.findViewById(R.id.recycler_view);
+            recyclerView.setLayoutManager(new GridLayoutManager(context, 3));
+            DashboardOptionsAdapter adapter = new DashboardOptionsAdapter(menu);
+            recyclerView.setAdapter(adapter);
             if (Message.GetSP(context, "Welcome_Phone", "secure_phone1", "NIL").equals("NIL")) {
                 key1.setText("OFF");
                 key1.setBackgroundColor(getResources().getColor(R.color.off));
@@ -465,26 +477,18 @@ public class Welcome extends Fragment {
             @Override
             public void onClick(View v) {
                 if (onActRet.equals("privacy")) {
-                                btn.setOnClickListener(new View.OnClickListener() {
-                                    @Override
-                                    public void onClick(View v) {
+
                                         btn.setText("loading...");
                                         communicator.onWelcome(info);
                                         Message.toast(context,"Privacy policy accepted");
-                                    }
-                                });
                 } else if (onActRet.equals("welcome")) {
                     //Activation key works number set
                     if (registerNumber.getText().toString().length() > 9 && registerNumber.getText().length() < 11) {
                         if (activation_key.getText().toString().length() > 7 && activation_key.getText().length() < 9) {
                             if (!activation_key.getText().toString().isEmpty() && !registerNumber.getText().toString().isEmpty()) {
-                                btn.setOnClickListener(new View.OnClickListener() {
-                                    @Override
-                                    public void onClick(View v) {
+
                                         btn.setText("loading...");
                                         saveUser(createRequest());
-                                    }
-                                });
                             }
                         } else {
                             Message.toast(context, "Your Activation Code is Invalid, Please Enter Correct Code.");
@@ -575,6 +579,8 @@ public class Welcome extends Fragment {
         UserRequest userRequest = new UserRequest();
         userRequest.setKey(activation_key.getText().toString());
         userRequest.setPrimaryNumber(registerNumber.getText().toString());
+        String phnNo =  registerNumber.getText().toString();
+                PreferenceUtils.getInstance(context).saveString(PreferenceUtils.USER_PHONE_NO, phnNo);
         return userRequest;
 
     }
@@ -707,6 +713,8 @@ public class Welcome extends Fragment {
             Message.tag("Something is wrong..!! Reinstall the app");
         }
     }
+
+
 
     interface Communicator {
         void onCreate(Bundle savedInstanceState);

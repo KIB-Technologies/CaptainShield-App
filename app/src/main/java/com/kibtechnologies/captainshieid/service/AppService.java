@@ -16,12 +16,32 @@ public class AppService {
     private Retrofit retrofit ;
     private UserData userAPI;
     private String BASE_URL = "https://capsheild.herokuapp.com/" ;
+    private String BASE_URL_SECOND = "";
 
     public AppService(){
 
         HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
         interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
         OkHttpClient client = new OkHttpClient.Builder().addInterceptor(interceptor).build();
+
+        Gson gson = new GsonBuilder()
+                .setLenient()
+                .create();
+
+        retrofit = new Retrofit.Builder()
+                .baseUrl(BASE_URL)
+                .client(client)
+                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+                .addConverterFactory(GsonConverterFactory.create(gson))
+                .build();
+
+        userAPI = retrofit.create(UserData.class);
+    }
+
+    public AppService(String token){
+
+        OkHttpClient client = new OkHttpClient.Builder().addInterceptor(new APIInterceptor(token)).build();
+
 
         Gson gson = new GsonBuilder()
                 .setLenient()

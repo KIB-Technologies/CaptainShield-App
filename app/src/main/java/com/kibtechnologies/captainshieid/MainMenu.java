@@ -27,10 +27,13 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
+import com.kibtechnologies.captainshieid.adapter.ItemClickListener;
+import com.kibtechnologies.captainshieid.utils.AutoStartHelper;
+
 import java.util.Objects;
 
 
-public class MainMenu extends AppCompatActivity implements AdapterView.OnItemClickListener, Welcome.Communicator {
+public class MainMenu extends AppCompatActivity implements  Welcome.Communicator, ItemClickListener {
 
     private DrawerLayout drawerLayout;
     private ListView listview;
@@ -42,10 +45,11 @@ public class MainMenu extends AppCompatActivity implements AdapterView.OnItemCli
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main_menu);
         drawerLayout = (DrawerLayout) findViewById(R.id.drawerLayout);
-        listview = (ListView) findViewById(R.id.drawerList);
-        MyAdapter = new MyAdapter(this);
-        listview.setAdapter(MyAdapter);
-        listview.setOnItemClickListener(this);
+       // AutoStartHelper.getInstance(this).getAutoStartPermission(this);
+       // listview = (ListView) findViewById(R.id.drawerList);
+       // MyAdapter = new MyAdapter(this);
+        //listview.setAdapter(MyAdapter);
+        //listview.setOnItemClickListener(this);
 
         drawerListener = new ActionBarDrawerToggle(this, drawerLayout, R.string.drawer_open, R.string.drawer_close) {
             @Override
@@ -83,9 +87,9 @@ public class MainMenu extends AppCompatActivity implements AdapterView.OnItemCli
     //main initial
     public void Main() {
         Message.tag("onCreate DEFAULT Else");
-       drawerLayout.setDrawerListener(drawerListener);
-        getSupportActionBar().setHomeButtonEnabled(true);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+      // drawerLayout.setDrawerListener(drawerListener);
+       // getSupportActionBar().setHomeButtonEnabled(true);
+      //  getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         initial();
         if (Message.GetSP(getBaseContext(), "Permission", "SMS", "OFF").equals("OFF")) {
@@ -100,6 +104,8 @@ public class MainMenu extends AppCompatActivity implements AdapterView.OnItemCli
             Message.toast(getBaseContext(), "Error: Contact Developer");
         }
     }
+
+
 
     //check permission
     public void check() {
@@ -131,6 +137,7 @@ public class MainMenu extends AppCompatActivity implements AdapterView.OnItemCli
 
     @Override
     public void onRequestPermissionsResult(int requestCode, String permissions[], int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         switch (requestCode) {
             case 133: {
 
@@ -155,7 +162,18 @@ public class MainMenu extends AppCompatActivity implements AdapterView.OnItemCli
         FragmentManager FM = getFragmentManager();
         FragmentTransaction FT = FM.beginTransaction();
         FT.replace(R.id.relative_main, welcomeFrag);
+        FT.addToBackStack(where);
         FT.commit();
+    }
+
+    @Override
+    public void onBackPressed() {
+        if (getSupportFragmentManager().getBackStackEntryCount() == 1){
+            finish();
+        }
+        else {
+            super.onBackPressed();
+        }
     }
 
     @Override
@@ -183,23 +201,23 @@ public class MainMenu extends AppCompatActivity implements AdapterView.OnItemCli
     }
 
     public void ifstatement(int num) {
-        if (num == 0) {
+        if (num == -1) {
             initial();
-        } else if (num == 1) {
+        } else if (num == 0) {
             setTitle("Phone Number");
             Activate_Welcome("Phone", "M");
-        } else if (num == 2) {
+        } else if (num == 1) {
             setTitle("Password Setup");
             Activate_Welcome("Password", "M");
-        } else if (num == 3) {
+        } else if (num == 2) {
             setTitle("Device Administrator");
             Activate_Welcome("Device_Admin", "M");
-        } else if (num == 4) {
+        } else if (num == 3) {
             Activate_Welcome("Log", "M");
-        } else if (num == 5) {
+        } else if (num == 4) {
             setTitle("Settings");
             Activate_Welcome("Settings", "M");
-        } else if (num == 6) {
+        } else if (num == 5) {
             setTitle("Help");
             Activate_Welcome("Help", "M");
         }
@@ -241,23 +259,28 @@ public class MainMenu extends AppCompatActivity implements AdapterView.OnItemCli
         return super.onOptionsItemSelected(item);
     }
 
-    @Override
+  /*  @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         ifstatement(position);
         selectItem(position);
         drawerLayout.closeDrawers();
-    }
+    }*/
 
     public void selectItem(int position) {
         listview.setItemChecked(position, true);
     }
 
     public void setTitle(String title) {
-
-        getSupportActionBar().setTitle(title);
+//        this.getSupportActionBar().setTitle(title);
+//        getSupportActionBar().setTitle(title);
 
     }
 
+    @Override
+    public void onItemClick(int position, boolean status) {
+        ifstatement(position);
+       // selectItem(position);
+    }
 }
 
 class MyAdapter extends BaseAdapter {

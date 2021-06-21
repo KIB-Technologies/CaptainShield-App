@@ -30,7 +30,7 @@
             android:id="@+id/help_client"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="@color/colorBlack"
+            android:textColor="@color/light_white"
             android:layout_gravity="center_horizontal"
             android:text="Open Captain Command Section" />
 
@@ -89,14 +89,14 @@
                         android:id="@+id/tv7"
                         android:layout_weight="1"
                         android:background="@color/colorPrimary"
-                        android:textColor="@color/colorBlack"
+                        android:textColor="@color/light_white"
                         android:padding="10dip"
                         android:text="@string/captain_password_normal" />
                 </TableRow>
 
                 <TableRow
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_height="49dp"
                     android:gravity="center_horizontal">
 
                     <com.google.android.material.textview.MaterialTextView
@@ -104,8 +104,8 @@
                         android:layout_weight="1"
                         android:gravity="left"
                         android:padding="10dip"
-                        android:textColor="@color/colorBlack"
-                        android:text="@string/lock_display" />
+                        android:text="@string/lock_display"
+                        android:textColor="@color/colorBlack" />
 
                     <com.google.android.material.textview.MaterialTextView
                         android:id="@+id/tv9"
@@ -113,7 +113,7 @@
                         android:background="@color/colorPrimary"
                         android:padding="10dip"
                         android:text="@string/captain_password_lockdisplay"
-                        android:textColor="#000000" />
+                        android:textColor="@color/light_white" />
                 </TableRow>
 
                 <TableRow
@@ -135,7 +135,7 @@
                         android:background="@color/colorPrimary"
                         android:padding="10dip"
                         android:text="@string/captain_password_wifion"
-                        android:textColor="#000000" />
+                        android:textColor="@color/light_white" />
                 </TableRow>
 
 <!--                <TableRow-->
@@ -200,7 +200,7 @@
                         android:background="@color/colorPrimary"
                         android:padding="10dip"
                         android:text="@string/captain_password_ring"
-                        android:textColor="#000000" />
+                        android:textColor="@color/light_white" />
                 </TableRow>
 
                 <TableRow
@@ -222,7 +222,7 @@
                         android:background="@color/colorPrimary"
                         android:padding="10dip"
                         android:text="@string/captain_password_stop"
-                        android:textColor="#000000" />
+                        android:textColor="@color/light_white" />
                 </TableRow>
 
                 <TableRow
@@ -244,7 +244,7 @@
                         android:background="@color/colorPrimary"
                         android:padding="10dip"
                         android:text="@string/captain_password_location"
-                        android:textColor="#000000" />
+                        android:textColor="@color/light_white" />
                 </TableRow>
 
                 <TableRow
@@ -266,7 +266,7 @@
                         android:background="@color/colorPrimary"
                         android:padding="10dip"
                         android:text="@string/captain_password_siminfo"
-                        android:textColor="#000000" />
+                        android:textColor="@color/light_white" />
                 </TableRow>
 
                 <TableRow
@@ -288,7 +288,7 @@
                         android:background="@color/colorPrimary"
                         android:padding="10dip"
                         android:text="@string/captain_password_phonenumber"
-                        android:textColor="#000000" />
+                        android:textColor="@color/light_white" />
                 </TableRow>
             </TableLayout>
         </LinearLayout>
@@ -296,7 +296,7 @@
             android:id="@+id/act_welcome_next_btn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="@color/colorBlack"
+            android:textColor="@color/light_white"
             android:layout_gravity="center_horizontal"
             android:text="@string/next" />
     </LinearLayout>

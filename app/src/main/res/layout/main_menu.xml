@@ -6,14 +6,12 @@
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/light_blue"
         android:id="@+id/mainContent">
 
         <LinearLayout
             android:id="@+id/relative_main"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@color/light_blue"
             android:orientation="vertical">
         </LinearLayout>
 
@@ -23,6 +21,7 @@
         android:background="@color/colorPrimary"
         android:divider="#cccccc"
         android:layout_width="100dp"
+        android:visibility="gone"
         android:layout_height="match_parent"
         android:id="@+id/drawerList"
         android:layout_gravity="start">

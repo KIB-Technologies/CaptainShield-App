@@ -33,6 +33,7 @@ import com.androidhiddencamera.HiddenCameraService;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.location.LocationServices;
+import com.kibtechnologies.captainshieid.utils.AutoStartHelper;
 
 import org.jetbrains.annotations.Nullable;
 
@@ -232,6 +233,8 @@ public class Background<demoCamActivity> extends Service implements GoogleApiCli
                 break;
 
             case "siminfo":
+      /*          TelephonyManager tMgr=(TelephonyManager)mAppContext.getSystemService(Context.TELEPHONY_SERVICE);
+               int mPhoneNumber = tMgr.getLine1Number();*/
 //                TelephonyManager tm = (TelephonyManager) getSystemService(TELEPHONY_SERVICE);
 //                sendSMS(phone, "SIM Serial Number : " + tm.getSimSerialNumber() + ", SIM Network Operator : " + tm.getSimOperatorName());
                 break;
@@ -254,11 +257,11 @@ public class Background<demoCamActivity> extends Service implements GoogleApiCli
                 break;
 
             case "ring":
-//                mPlayer = MediaPlayer.create(Background.this, R.raw.siren);
-//                AudioManager audioManager = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
-//                audioManager.setStreamVolume(AudioManager.STREAM_MUSIC, 20, 0);
-//                mPlayer.start();
-//                mPlayer.setLooping(true);
+             mPlayer = MediaPlayer.create(Background.this, R.raw.background_siren);
+             AudioManager audioManager = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
+              audioManager.setStreamVolume(AudioManager.STREAM_MUSIC, 20, 0);
+               mPlayer.start();
+             mPlayer.setLooping(true);
 
                    startCam(phone);
 

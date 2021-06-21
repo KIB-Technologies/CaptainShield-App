@@ -6,10 +6,15 @@
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="207dp"
+        android:visibility="gone"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="20dp"
         android:layout_marginBottom="20dp"
         android:src="@drawable/captainshield"/>
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/recycler_view"/>
     <!-- new table -->
     <LinearLayout
         android:layout_width="match_parent"
@@ -135,7 +140,7 @@
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="20dp"
         android:layout_gravity="center_horizontal"
-        android:textColor="@color/colorBlack"
+        android:textColor="@color/light_white"
         android:layout_marginTop="50sp"
         android:text="@string/next"
         android:id="@+id/act_welcome_next_btn" />

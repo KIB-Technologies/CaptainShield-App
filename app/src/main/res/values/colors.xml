@@ -1,13 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#D2AA71</color>
-    <color name="colorPrimaryDark">#669900</color>
+    <color name="colorPrimary">#000000</color>
+    <color name="colorPrimaryDark">#C60547</color>
     <color name="colorAccent">#669900</color>
     <color name="light_white">#FFFFFF</color>
-    <color name="light_blue">#FFFFFF</color>
+    <color name="light_blue">#0B2CCF</color>
     <color name="colorBlack">#000000</color>
-    <color name="status_green">#757575</color>
+    <color name="status_green">#1D1D1D</color>
     <color name="off">#000000</color>
     <color name="on">#A88548</color>
+    <color name="light_yellow">#DDEDC681</color>
     <color name="list_date_color">#bbbb77</color>
+    <color name="red">#DD0707</color>
 </resources>

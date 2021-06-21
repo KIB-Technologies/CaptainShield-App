@@ -13,5 +13,6 @@
         android:layout_height="wrap_content"
         android:text="Insert"
         android:id="@+id/button"
+        android:textColor="@color/light_white"
         android:layout_gravity="center_horizontal" />
 </LinearLayout>

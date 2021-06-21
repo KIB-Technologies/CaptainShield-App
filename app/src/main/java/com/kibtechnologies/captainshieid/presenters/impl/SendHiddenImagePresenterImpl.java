@@ -15,6 +15,7 @@ import io.reactivex.schedulers.Schedulers;
 import okhttp3.MediaType;
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
+import retrofit2.http.Multipart;
 
 /**
  * Created by Khushboo Jha on 5/16/21.
@@ -31,11 +32,12 @@ public class SendHiddenImagePresenterImpl implements SendHiddenImagePresenter {
 
 
     @Override
-    public void sendData(File file, String phone) {
+    public void sendData( File file, String phone,String trackid) {
         RequestBody phonePart = RequestBody.create(MultipartBody.FORM, phone);
+        RequestBody idPart = RequestBody.create(MultipartBody.FORM, trackid);
         RequestBody filePart = RequestBody.create(MediaType.parse("multipart.form-data"), file.getAbsoluteFile());
         MultipartBody.Part parts = MultipartBody.Part.createFormData("file", file.getName(), filePart);
-        service.getUserAPI().sendData(parts,phonePart)
+        service.getUserAPI().sendData(parts,phonePart,idPart)
                 .subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread())
                 .unsubscribeOn(Schedulers.newThread())

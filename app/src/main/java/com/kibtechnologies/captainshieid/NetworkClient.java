@@ -8,7 +8,7 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class NetworkClient {
-    public static final String BASE_URL = "http://captionshield.herokuapp.com/api/";
+    public static final String BASE_URL = "http://capsheild.herokuapp.com/";
     public static Retrofit retrofit = null;
 
     public static Retrofit getRetrofit() {

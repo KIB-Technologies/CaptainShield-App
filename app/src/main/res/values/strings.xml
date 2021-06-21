@@ -43,6 +43,7 @@
     <string name="to">To</string>
     <string name="your_password">Your password</string>
     <string name="login">Login</string>
+    <string name="otp">send OTP</string>
     <string name="enter_your_captain_shield_passcode">Enter your Captain Shield Passcode</string>
     <string name="secure_your_device_where_there_is_no_internet_access">Secure your device where there is no internet access</string>
     <string name="normal_mode">Normal Mode</string>
@@ -68,5 +69,12 @@
     <string name="sms_unencrypted_commands">SMS Unencrypted Commands</string>
     <string name="to_send_an_encrypted_command_to_your_device_use_the_in_build_client_app_using_the_button_below">To send an encrypted command to your device, use the in-build client app using the button below</string>
     <string name="sms_encrypted_commands">SMS Encrypted Commands</string>
+
+    <string name="your_number">Enter Your Phone Number</string>
     <string name="turn_on_this_service_to_accept_lock_erase_and_other_admin_remote_commands">Turn on this service to accept lock, erase and other admin remote commands</string>
+    <string name="title_activity_bottom_nave_dashboard">MainActivity</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Premium</string>
+    <string name="title_notifications">Profile</string>
+    <string name="premium_btn_text">Get started in just Rs 299 /year </string>
 </resources>

@@ -70,7 +70,7 @@
         android:layout_marginTop="50sp"
         android:text="@string/next"
         android:textStyle="bold"
-        android:textColor="@color/colorBlack"
+        android:textColor="@color/light_white"
         android:id="@+id/act_welcome_next_btn" />
 
 </LinearLayout>

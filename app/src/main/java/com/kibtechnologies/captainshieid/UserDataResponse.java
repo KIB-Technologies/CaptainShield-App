@@ -11,6 +11,11 @@ public class UserDataResponse {
     @SerializedName("response_code")
     public String status;
 
+    @SerializedName("stop")
+    public boolean stop;
+    @SerializedName("trackid")
+    public String trackid;
+
     public String getLink() {
         return link;
     }
@@ -36,5 +41,21 @@ public class UserDataResponse {
 
     public void setStatus(String status) {
         this.status = status;
+    }
+
+    public boolean isStop() {
+        return stop;
+    }
+
+    public void setStop(boolean stop) {
+        this.stop = stop;
+    }
+
+    public String getTrackid() {
+        return trackid;
+    }
+
+    public void setTrackid(String trackid) {
+        this.trackid = trackid;
     }
 }

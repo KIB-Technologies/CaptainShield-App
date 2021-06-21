@@ -48,7 +48,7 @@
     <com.google.android.material.button.MaterialButton
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textColor="@color/colorBlack"
+        android:textColor="@color/light_white"
         android:id="@+id/client_final_button"
         android:text="Send Command"/>
 </LinearLayout>
