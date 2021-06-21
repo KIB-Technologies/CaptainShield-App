@@ -42,6 +42,7 @@ public class EnterActivationKeyActivity extends AppCompatActivity {
             public void onChanged(ActivationResponse activationResponse) {
                 showProgressbar(false);
                 if (activationResponse.getResponse_code() == 200){
+
                     Intent intent = new Intent(EnterActivationKeyActivity.this, MainMenu.class);
                     startActivity(intent);
                     finish();

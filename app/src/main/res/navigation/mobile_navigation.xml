@@ -18,6 +18,12 @@
         tools:layout="@layout/fragment_dashboard" />
 
     <fragment
+        android:id="@+id/navigation_main"
+        android:name="com.kibtechnologies.captainshieid.views.activities.ui.dashboard.DashboardFragment"
+        android:label="@string/title_menu"
+        tools:layout="@layout/login_app" />
+
+    <fragment
         android:id="@+id/navigation_notifications"
         android:name="com.kibtechnologies.captainshieid.views.activities.ui.notifications.NotificationsFragment"
         android:label="@string/title_notifications"

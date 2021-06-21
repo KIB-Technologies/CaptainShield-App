@@ -2,6 +2,7 @@ package com.kibtechnologies.captainshieid.views.activities;
 
 import android.Manifest;
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
@@ -13,6 +14,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.kibtechnologies.captainshieid.LockScreen;
 import com.kibtechnologies.captainshieid.MainMenu;
 import com.kibtechnologies.captainshieid.Message;
 import com.kibtechnologies.captainshieid.R;
@@ -37,8 +39,10 @@ import androidx.navigation.NavDestination;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
+
 import com.razorpay.Checkout;
 import com.razorpay.PaymentResultListener;
+
 import org.jetbrains.annotations.NotNull;
 import org.json.JSONObject;
 
@@ -51,21 +55,23 @@ public class BottomNaveDashboardActivity extends AppCompatActivity implements Na
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+//        String number1 = Message.GetSP(BottomNaveDashboardActivity.this, "Welcomekey", "activation_key", "no");
+//        Toast.makeText(activity, "Shared Pref is ==="+number1, Toast.LENGTH_LONG).show();
+//        System.out.println("Shared pref value is === "+ number1);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_bottom_nave_dashboard);
         BottomNavigationView navView = findViewById(R.id.nav_view);
         ActionBar actionBar = getSupportActionBar();
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
-        AppBarConfiguration appBarConfiguration = new AppBarConfiguration.Builder(
-                R.id.navigation_home, R.id.navigation_dashboard, R.id.navigation_notifications)
+        AppBarConfiguration appBarConfiguration = new AppBarConfiguration.Builder(R.id.navigation_home, R.id.navigation_dashboard, R.id.navigation_notifications)
                 .build();
 
-            NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
-           // NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
-            NavigationUI.setupWithNavController(navView, navController);
+        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
+        // NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
+        NavigationUI.setupWithNavController(navView, navController);
 
-       // check();
+        // check();
 
                /*
          To ensure faster loading of the Checkout form,
@@ -75,11 +81,11 @@ public class BottomNaveDashboardActivity extends AppCompatActivity implements Na
 
     }
 
-    private void requestPermission(String permission){
-        if (ActivityCompat.shouldShowRequestPermissionRationale(activity, permission)){
+    private void requestPermission(String permission) {
+        if (ActivityCompat.shouldShowRequestPermissionRationale(activity, permission)) {
             Toast.makeText(activity, "Phone state permission allows us to get phone number. Please allow it for additional functionality.", Toast.LENGTH_LONG).show();
         }
-        ActivityCompat.requestPermissions(activity, new String[]{permission},PERMISSION_REQUEST_CODE);
+        ActivityCompat.requestPermissions(activity, new String[]{permission}, PERMISSION_REQUEST_CODE);
     }
 
     @Override
@@ -134,10 +140,11 @@ public class BottomNaveDashboardActivity extends AppCompatActivity implements Na
                 .replace(R.id.nav_host_fragment, fragment, fragmentTag)
                 .commit();
     }
+
     private Fragment getFragment(String fragmentTag) {
         Fragment fragment = null;
         switch (fragmentTag) {
-            case  Constants.FRAGMENT_HOME:
+            case Constants.FRAGMENT_HOME:
                 fragment = HomeFragment.newInstance(Constants.FRAGMENT_HOME);
                 break;
            /* case Constants.FRAGMENT_OTP:
@@ -150,7 +157,7 @@ public class BottomNaveDashboardActivity extends AppCompatActivity implements Na
 
     @Override
     public void onDestinationChanged(@NonNull NavController controller, @NonNull NavDestination destination, @Nullable Bundle arguments) {
-        switch (destination.getId()){
+        switch (destination.getId()) {
             case R.id.navigation_notifications:
                 addFragment(Constants.FRAGMENT_HOME);
                 break;
@@ -159,22 +166,22 @@ public class BottomNaveDashboardActivity extends AppCompatActivity implements Na
 
     @Override
     public void setAdapterValue(String value) {
-       startPayment(value);
+        startPayment(value);
     }
 
-     public void startPayment(String amt) {
+    public void startPayment(String amt) {
         /*
           You need to pass current activity in order to let Razorpay create CheckoutActivity
          */
         final Activity activity = this;
 
         final Checkout checkout = new Checkout();
-         checkout.setKeyID("rzp_live_0rpArk5FniwfVE");
+        checkout.setKeyID("rzp_live_0rpArk5FniwfVE");
         try {
             JSONObject options = new JSONObject();
             options.put("name", "Prom You Tech");
             options.put("description", "Captain Shield Premium");
-            options.put("send_sms_hash",true);
+            options.put("send_sms_hash", true);
             options.put("allow_rotation", true);
             //You can omit the image option to fetch the image from dashboard
 //            options.put("image", "https://thecaptainshield.com/img/applogo.png");
@@ -183,7 +190,7 @@ public class BottomNaveDashboardActivity extends AppCompatActivity implements Na
 
             JSONObject preFill = new JSONObject();
             preFill.put("email", "promyoutech@gmail.com");
-            preFill.put("contact", PreferenceUtils.getInstance(this).getString(PreferenceUtils.Key.PHONE_NUMBER.name(),""));
+            preFill.put("contact", PreferenceUtils.getInstance(this).getString(PreferenceUtils.Key.PHONE_NUMBER.name(), ""));
 
             options.put("prefill", preFill);
 
@@ -195,7 +202,9 @@ public class BottomNaveDashboardActivity extends AppCompatActivity implements Na
         }
     }
 
-/*    *//**
+    /*    */
+
+    /**
      * The name of the function has to be
      * onPaymentSuccess
      * Wrap your code in try catch, as shown, to ensure that this method runs correctly

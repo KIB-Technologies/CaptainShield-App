@@ -75,6 +75,7 @@
     <string name="title_activity_bottom_nave_dashboard">MainActivity</string>
     <string name="title_home">Home</string>
     <string name="title_dashboard">Premium</string>
+    <string name="title_menu">Menu</string>
     <string name="title_notifications">Profile</string>
     <string name="premium_btn_text">Get started in just Rs 299 /year </string>
 </resources>

@@ -29,6 +29,7 @@ import androidx.drawerlayout.widget.DrawerLayout;
 
 import com.kibtechnologies.captainshieid.adapter.ItemClickListener;
 import com.kibtechnologies.captainshieid.utils.AutoStartHelper;
+import com.kibtechnologies.captainshieid.views.activities.BottomNaveDashboardActivity;
 
 import java.util.Objects;
 
@@ -131,7 +132,7 @@ public class MainMenu extends AppCompatActivity implements  Welcome.Communicator
 
     public void simInsert() {
         TelephonyManager tm = (TelephonyManager) getSystemService(Context.TELEPHONY_SERVICE);
-        Message.SetSP(getBaseContext(), "Sim", "SimNo", tm.getSimSerialNumber());
+      //  Message.SetSP(getBaseContext(), "Sim", "SimNo", tm.getSimSerialNumber());
 //        Message.tag(tm.getSimSerialNumber());
     }
 
@@ -170,9 +171,13 @@ public class MainMenu extends AppCompatActivity implements  Welcome.Communicator
     public void onBackPressed() {
         if (getSupportFragmentManager().getBackStackEntryCount() == 1){
             finish();
+
         }
         else {
             super.onBackPressed();
+            Intent intent = new Intent(this, BottomNaveDashboardActivity.class);
+            startActivity(intent);
+            finish();
         }
     }
 
