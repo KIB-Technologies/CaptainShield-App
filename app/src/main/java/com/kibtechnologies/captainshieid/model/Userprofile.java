@@ -42,6 +42,17 @@ public class Userprofile implements Serializable {
     @SerializedName("key")
     private String key;
 
+    public String getExpiry() {
+        return expiry;
+    }
+
+    public void setExpiry(String expiry) {
+        this.expiry = expiry;
+    }
+
+    @SerializedName("expiry")
+    private String expiry;
+
     public UserLocation getLocation() {
         return location;
     }

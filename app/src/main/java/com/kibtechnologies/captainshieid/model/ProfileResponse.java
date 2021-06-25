@@ -36,6 +36,16 @@ public class ProfileResponse implements Serializable {
     @SerializedName("key")
     public String key;
 
+    @SerializedName("expiry")
+    public String expiry;
+
+    public String getExpiry() {
+        return expiry;
+    }
+
+    public void setExpiry(String expiry) {
+        this.expiry = expiry;
+    }
 
     public int getResponse_code() {
         return response_code;

@@ -47,6 +47,8 @@ public class NotificationsFragment extends Fragment {
         final TextView logout = root.findViewById(R.id.logout);
         final TextView keydata = root.findViewById(R.id.keyId);
         final TextView number = root.findViewById(R.id.user_no);
+        final TextView premiumTag = root.findViewById(R.id.premiumUser);
+        final TextView expiryDate = root.findViewById(R.id.keyexpiry);
         logout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -73,8 +75,11 @@ public class NotificationsFragment extends Fragment {
                 if (profileResponse.getResponse_code() == 200){
                     number.setText(profileResponse.getResponse_data().getPrimaryNumber());
                     if(profileResponse.premium == true){
-                        keydata.setText("key : "+ profileResponse.key);
+                        premiumTag.setText("Premium User".toUpperCase());
+                        keydata.setText("Activation key : "+ profileResponse.key);
+                        expiryDate.setText("Activation Expire On : "+profileResponse.expiry);
                     }else{
+                        premiumTag.setText("Get Premium Today!");
                         keydata.setText("Key : No Key Available");
                     }
                 }
