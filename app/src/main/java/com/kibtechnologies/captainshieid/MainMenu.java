@@ -77,11 +77,12 @@ public class MainMenu extends AppCompatActivity implements  Welcome.Communicator
             drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED);
         } else {
             login();
-            try {
-                getSupportActionBar().hide();
-            } catch (Exception e) {
-                Message.toast(getBaseContext(), "Error: Contact Developer");
-            }
+//            try {
+//                getSupportActionBar().hide();
+//            } catch (Exception e) {
+//                System.out.println(e);
+////                Message.toast(getBaseContext(), "Error: Contact Developer");
+//            }
         }
     }
 
@@ -99,11 +100,11 @@ public class MainMenu extends AppCompatActivity implements  Welcome.Communicator
             Message.SetSP(getBaseContext(), "ACT", "SimCH1", "OK");
         }
         Message.appLog(getBaseContext(), "App Opened");
-        try {
-            getSupportActionBar().show();
-        } catch (Exception e) {
-            Message.toast(getBaseContext(), "Error: Contact Developer");
-        }
+//        try {
+//            getSupportActionBar().show();
+//        } catch (Exception e) {
+//            Message.toast(getBaseContext(), "Error: Contact Developer");
+//        }
     }
 
 
@@ -130,11 +131,11 @@ public class MainMenu extends AppCompatActivity implements  Welcome.Communicator
 
     }
 
-    public void simInsert() {
-        TelephonyManager tm = (TelephonyManager) getSystemService(Context.TELEPHONY_SERVICE);
-      //  Message.SetSP(getBaseContext(), "Sim", "SimNo", tm.getSimSerialNumber());
-//        Message.tag(tm.getSimSerialNumber());
-    }
+//    public void simInsert() {
+//        TelephonyManager tm = (TelephonyManager) getSystemService(Context.TELEPHONY_SERVICE);
+//      //  Message.SetSP(getBaseContext(), "Sim", "SimNo", tm.getSimSerialNumber());
+////        Message.tag(tm.getSimSerialNumber());
+//    }
 
     @Override
     public void onRequestPermissionsResult(int requestCode, String permissions[], int[] grantResults) {
@@ -171,7 +172,6 @@ public class MainMenu extends AppCompatActivity implements  Welcome.Communicator
     public void onBackPressed() {
         if (getSupportFragmentManager().getBackStackEntryCount() == 1){
             finish();
-
         }
         else {
             super.onBackPressed();

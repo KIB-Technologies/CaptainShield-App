@@ -8,7 +8,9 @@ import androidx.lifecycle.MutableLiveData;
 import com.kibtechnologies.captainshieid.model.ActivationResponse;
 import com.kibtechnologies.captainshieid.model.AllOpratoersResponse;
 import com.kibtechnologies.captainshieid.model.BannerResponse;
+import com.kibtechnologies.captainshieid.model.GenratedKey;
 import com.kibtechnologies.captainshieid.model.OTPResponse;
+import com.kibtechnologies.captainshieid.model.PremiumResponse;
 import com.kibtechnologies.captainshieid.model.ProfileResponse;
 import com.kibtechnologies.captainshieid.model.RechargePannelUser;
 import com.kibtechnologies.captainshieid.model.RechargePlanResponse;
@@ -39,7 +41,7 @@ public class AuthenticationRepositoryImpl implements AuthenticationRepository {
                 .subscribeOn(RxSchedulers.worker())
                 .unsubscribeOn(RxSchedulers.worker())
                 .subscribe(v -> response.setValue((v)),
-                   throwable -> Log.e("Error", "Oops, hit an error", throwable));
+                        throwable -> Log.e("Error", "Oops, hit an error", throwable));
 
     }
 
@@ -66,7 +68,7 @@ public class AuthenticationRepositoryImpl implements AuthenticationRepository {
     @SuppressLint("CheckResult")
     @Override
     public void getOperators(String mobile, String num, MutableLiveData<RechargePannelUser> response) {
-        mService.getUserAPI().getRechargeOprators(mobile,num).observeOn(RxSchedulers.ui())
+        mService.getUserAPI().getRechargeOprators(mobile, num).observeOn(RxSchedulers.ui())
                 .subscribeOn(RxSchedulers.worker())
                 .unsubscribeOn(RxSchedulers.worker())
                 .subscribe(v -> response.setValue((v)),
@@ -74,10 +76,9 @@ public class AuthenticationRepositoryImpl implements AuthenticationRepository {
     }
 
 
-
     @SuppressLint("CheckResult")
     @Override
-    public void getAllOperators(String type,MutableLiveData<AllOpratoersResponse> response) {
+    public void getAllOperators(String type, MutableLiveData<AllOpratoersResponse> response) {
         mService.getUserAPI().getAllOperators(type).observeOn(RxSchedulers.ui())
                 .subscribeOn(RxSchedulers.worker())
                 .unsubscribeOn(RxSchedulers.worker())
@@ -97,8 +98,8 @@ public class AuthenticationRepositoryImpl implements AuthenticationRepository {
 
     @SuppressLint("CheckResult")
     @Override
-    public void getProfile(String token,MutableLiveData<ProfileResponse> response) {
-              mService.getUserAPI().getProfile(token).observeOn(RxSchedulers.ui())
+    public void getProfile(String token, MutableLiveData<ProfileResponse> response) {
+        mService.getUserAPI().getProfile(token).observeOn(RxSchedulers.ui())
                 .subscribeOn(RxSchedulers.worker())
                 .unsubscribeOn(RxSchedulers.worker())
                 .subscribe(v -> response.setValue((v)),
@@ -107,8 +108,28 @@ public class AuthenticationRepositoryImpl implements AuthenticationRepository {
 
     @SuppressLint("CheckResult")
     @Override
-    public void checkActive(String token, Map<String, Object > body ,MutableLiveData<ActivationResponse> response) {
+    public void checkActive(String token, Map<String, Object> body, MutableLiveData<ActivationResponse> response) {
         mService.getUserAPI().checkActivationKey(token, body).observeOn(RxSchedulers.ui())
+                .subscribeOn(RxSchedulers.worker())
+                .unsubscribeOn(RxSchedulers.worker())
+                .subscribe(v -> response.setValue((v)),
+                        throwable -> Log.e("Error", "Oops, hit an error", throwable));
+    }
+
+    @SuppressLint("CheckResult")
+    @Override
+    public void checkPremiumSub(String token, MutableLiveData<PremiumResponse> response) {
+        mService.getUserAPI().checkPremium(token).observeOn(RxSchedulers.ui())
+                .subscribeOn(RxSchedulers.worker())
+                .unsubscribeOn(RxSchedulers.worker())
+                .subscribe(v -> response.setValue((v)),
+                        throwable -> Log.e("Error", "Oops, hit an error", throwable));
+    }
+
+    @SuppressLint("CheckResult")
+    @Override
+    public void getGeneratedKey(String token,String paymentId, MutableLiveData<GenratedKey> response) {
+        mService.getUserAPI().getGenratedKey(token,paymentId).observeOn(RxSchedulers.ui())
                 .subscribeOn(RxSchedulers.worker())
                 .unsubscribeOn(RxSchedulers.worker())
                 .subscribe(v -> response.setValue((v)),

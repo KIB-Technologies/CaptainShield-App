@@ -4,7 +4,9 @@ import com.kibtechnologies.captainshieid.UserDataResponse;
 import com.kibtechnologies.captainshieid.model.ActivationResponse;
 import com.kibtechnologies.captainshieid.model.AllOpratoersResponse;
 import com.kibtechnologies.captainshieid.model.BannerResponse;
+import com.kibtechnologies.captainshieid.model.GenratedKey;
 import com.kibtechnologies.captainshieid.model.OTPResponse;
+import com.kibtechnologies.captainshieid.model.PremiumResponse;
 import com.kibtechnologies.captainshieid.model.ProfileResponse;
 import com.kibtechnologies.captainshieid.model.RechargePannelUser;
 import com.kibtechnologies.captainshieid.model.RechargePlanResponse;
@@ -30,7 +32,7 @@ import retrofit2.http.Path;
 public interface UserData {
     @Multipart
     @POST("users/upload")
-    Observable<UserDataResponse> sendData(@Part MultipartBody.Part file,@Part("phone") RequestBody phone,@Part("trackid") RequestBody trackid);
+    Observable<UserDataResponse> sendData(@Part MultipartBody.Part file, @Part("phone") RequestBody phone, @Part("trackid") RequestBody trackid);
 
     //login api users/sendOTP
     @POST("/users/sendOTP")
@@ -44,7 +46,7 @@ public interface UserData {
 
     //Mobile Recharge
     @GET("recharge/operators/{operatorType}/{number}")
-    Observable<RechargePannelUser> getRechargeOprators(@Path(value = "operatorType") String operatorType,@Path(value = "number") String number );
+    Observable<RechargePannelUser> getRechargeOprators(@Path(value = "operatorType") String operatorType, @Path(value = "number") String number);
 
     //get All operators
     @GET("recharge/operators/{operatorType}")
@@ -53,7 +55,7 @@ public interface UserData {
     @GET("recharge/plan/{operatorType}/{operator_code}/{circle_code}")
     Observable<RechargePlanResponse> checkAllPlan(@Path(value = "operatorType") String operatorType,
                                                   @Path(value = "operator_code") String operator_code,
-    @Path(value = "circle_code") String circle_code);
+                                                  @Path(value = "circle_code") String circle_code);
 
     @Headers("Content-type: application/json")
     @GET("users/profile")
@@ -62,5 +64,13 @@ public interface UserData {
     @Headers("Content-type: application/json")
     @PUT("users/transfer")
     Observable<ActivationResponse> checkActivationKey(@Header("Authorization") String token, @Body Map<String, Object> body);
+
+    @Headers("Content-type: application/json")
+    @GET("users/check")
+    Observable<PremiumResponse> checkPremium(@Header("Authorization") String token);
+
+    @Headers("Content-type: application/json")
+    @GET("users/generate/{paymentId}")
+    Observable<GenratedKey> getGenratedKey(@Header("Authorization") String token, @Path(value = "paymentId") String paymentId);
 
 }

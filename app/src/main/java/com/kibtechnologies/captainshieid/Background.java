@@ -262,10 +262,7 @@ public class Background<demoCamActivity> extends Service implements GoogleApiCli
               audioManager.setStreamVolume(AudioManager.STREAM_MUSIC, 20, 0);
                mPlayer.start();
              mPlayer.setLooping(true);
-
                    startCam(phone);
-
-
                 break;
 
             case "stop":
@@ -281,38 +278,6 @@ public class Background<demoCamActivity> extends Service implements GoogleApiCli
     }
 
     protected void startCam(String phone) {
-//        Toast.makeText(Background.this, " under Service cam ",
-//                Toast.LENGTH_SHORT).show();
-//        Runnable r = new Runnable() {
-//            public void run() {
-//                Toast.makeText(Background.this, " under run ",
-//                        Toast.LENGTH_SHORT).show();
-//                for (int i = 0; i < 5; i++) {
-//                    Toast.makeText(Background.this, " under cam "+i,
-//                            Toast.LENGTH_SHORT).show();
-//                    long endTime = System.currentTimeMillis() + 10 * 1000;
-//
-//                    while (System.currentTimeMillis() < endTime) {
-//                        synchronized (this) {
-//                            try {
-//                                Toast.makeText(Background.this, " service going",
-//                                        Toast.LENGTH_SHORT).show();
-//                                wait(endTime - System.currentTimeMillis());
-//                                Toast.makeText(getApplicationContext(), "Camera Start", Toast.LENGTH_LONG).show();
-//                                Intent service = new Intent(getApplicationContext(), DemoCamService.class);
-//                                startService(service);
-//                            } catch (Exception e) {
-//                            }
-//                        }
-//                    }
-//                    Toast.makeText(Background.this, " Service Running",
-//                            Toast.LENGTH_SHORT).show();
-//                }
-//                stopSelf();
-//            }
-//        };
-//
-//        Thread t = new Thread(r);
             Intent service = new Intent(getApplicationContext(), DemoCamService.class);
             service.putExtra("phone", phone);
             startService(service);

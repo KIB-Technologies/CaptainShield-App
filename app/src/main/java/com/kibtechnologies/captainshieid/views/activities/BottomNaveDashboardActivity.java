@@ -19,6 +19,10 @@ import com.kibtechnologies.captainshieid.MainMenu;
 import com.kibtechnologies.captainshieid.Message;
 import com.kibtechnologies.captainshieid.R;
 import com.kibtechnologies.captainshieid.adapter.AdapterListener;
+import com.kibtechnologies.captainshieid.model.GenratedKey;
+import com.kibtechnologies.captainshieid.model.PremiumResponse;
+import com.kibtechnologies.captainshieid.repository.AuthenticationViewModelFactory;
+import com.kibtechnologies.captainshieid.repository.AuthentictionViewModel;
 import com.kibtechnologies.captainshieid.utils.Constants;
 import com.kibtechnologies.captainshieid.utils.PreferenceUtils;
 import com.kibtechnologies.captainshieid.utils.Util;
@@ -34,6 +38,9 @@ import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
+import androidx.lifecycle.LifecycleOwner;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
 import androidx.navigation.NavDestination;
 import androidx.navigation.Navigation;
@@ -51,7 +58,9 @@ public class BottomNaveDashboardActivity extends AppCompatActivity implements Na
     String TAG = "BottomNaveDashboardActivity";
     String wantPermission = Manifest.permission.READ_PHONE_STATE;
     private static final int PERMISSION_REQUEST_CODE = 1;
+    private AuthentictionViewModel model;
     private TextView toolbarTitle;
+    String key;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -176,7 +185,7 @@ public class BottomNaveDashboardActivity extends AppCompatActivity implements Na
         final Activity activity = this;
 
         final Checkout checkout = new Checkout();
-        checkout.setKeyID("rzp_live_0rpArk5FniwfVE");
+        checkout.setKeyID("rzp_test_m4pFBUjG8AKUXD");
         try {
             JSONObject options = new JSONObject();
             options.put("name", "Prom You Tech");
@@ -202,28 +211,28 @@ public class BottomNaveDashboardActivity extends AppCompatActivity implements Na
         }
     }
 
-    /*    */
-
-    /**
-     * The name of the function has to be
-     * onPaymentSuccess
-     * Wrap your code in try catch, as shown, to ensure that this method runs correctly
-     */
-    @SuppressWarnings("unused")
     public void onPaymentSuccess(String razorpayPaymentID) {
         try {
             Toast.makeText(this, "Payment Successful: " + razorpayPaymentID, Toast.LENGTH_SHORT).show();
+            String token = PreferenceUtils.getInstance(activity).getToken();
+            model = new ViewModelProvider(this, new AuthenticationViewModelFactory()).get(AuthentictionViewModel.class);
+            model.getGenratedKeyResult().observe(this, genratedKey -> {
+                if (genratedKey.getResponse_code() == 200) {
+                    Message.toast(getApplicationContext(),"genrate key"+key);
+                    key = genratedKey.getResponse_data();
+                    if (key != null) {
+                        Message.toast(getApplicationContext(),"genrate key"+key);
+                            Intent intent = new Intent(getApplicationContext(), MainMenu.class);
+                            startActivity(intent);
+                    }
+                }
+            });
+            model.getGenerateKey("bearer " + token,razorpayPaymentID);
         } catch (Exception e) {
             Log.e(TAG, "Exception in onPaymentSuccess", e);
         }
     }
 
-    /**
-     * The name of the function has to be
-     * onPaymentError
-     * Wrap your code in try catch, as shown, to ensure that this method runs correctly
-     */
-    @SuppressWarnings("unused")
     public void onPaymentError(int code, String response) {
         try {
             Toast.makeText(this, "Payment failed: " + code + " " + response, Toast.LENGTH_SHORT).show();

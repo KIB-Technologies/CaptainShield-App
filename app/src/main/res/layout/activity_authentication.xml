@@ -23,8 +23,8 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <ImageView
-            android:layout_width="120dp"
-            android:layout_height="120dp"
+            android:layout_width="160dp"
+            android:layout_height="160dp"
             android:layout_gravity="center"
             android:src="@drawable/shield_logo_removebg_preview" />
         <TextView
@@ -35,7 +35,7 @@
             android:layout_marginEnd="28dp"
             android:letterSpacing="0.1"
             android:layout_marginTop="20dp"
-            android:text="Login"
+            android:text="Welcome"
             android:fontFamily="@font/montserrat_medium"
             android:gravity="center"
             android:textColor="#fff"

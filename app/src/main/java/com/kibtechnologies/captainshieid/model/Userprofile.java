@@ -23,12 +23,6 @@ public class Userprofile implements Serializable {
     private int otp;
     @SerializedName("role")
     private String role;
-    @SerializedName("createdAt")
-    private Date createdAt;
-    @SerializedName("updatedAt")
-    private Date updatedAt;
-    @SerializedName("__v")
-    private int __v;
     @SerializedName("filePath")
     private String filePath;
     @SerializedName("profilePic")
@@ -41,6 +35,12 @@ public class Userprofile implements Serializable {
     private String firstName;
     @SerializedName("lastName")
     private Object lastName;
+
+    @SerializedName("premium")
+    private boolean premium;
+
+    @SerializedName("key")
+    private String key;
 
     public UserLocation getLocation() {
         return location;
@@ -90,30 +90,6 @@ public class Userprofile implements Serializable {
         this.role = role;
     }
 
-    public Date getCreatedAt() {
-        return createdAt;
-    }
-
-    public void setCreatedAt(Date createdAt) {
-        this.createdAt = createdAt;
-    }
-
-    public Date getUpdatedAt() {
-        return updatedAt;
-    }
-
-    public void setUpdatedAt(Date updatedAt) {
-        this.updatedAt = updatedAt;
-    }
-
-    public int get__v() {
-        return __v;
-    }
-
-    public void set__v(int __v) {
-        this.__v = __v;
-    }
-
     public String getFilePath() {
         return filePath;
     }
@@ -161,4 +137,21 @@ public class Userprofile implements Serializable {
     public void setLastName(Object lastName) {
         this.lastName = lastName;
     }
+
+    public boolean isPremium() {
+        return premium;
+    }
+
+    public void setPremium(boolean premium) {
+        this.premium = premium;
+    }
+
+    public String getKey() {
+        return key;
+    }
+
+    public void setKey(String key) {
+        this.key = key;
+    }
+
 }

@@ -7,7 +7,9 @@ import androidx.lifecycle.ViewModel;
 import com.kibtechnologies.captainshieid.model.ActivationResponse;
 import com.kibtechnologies.captainshieid.model.AllOpratoersResponse;
 import com.kibtechnologies.captainshieid.model.BannerResponse;
+import com.kibtechnologies.captainshieid.model.GenratedKey;
 import com.kibtechnologies.captainshieid.model.OTPResponse;
+import com.kibtechnologies.captainshieid.model.PremiumResponse;
 import com.kibtechnologies.captainshieid.model.ProfileResponse;
 import com.kibtechnologies.captainshieid.model.RechargePannelUser;
 import com.kibtechnologies.captainshieid.model.RechargePlanResponse;
@@ -28,9 +30,20 @@ public class AuthentictionViewModel extends ViewModel {
     private MutableLiveData<RechargePlanResponse> allPlane = new MutableLiveData<>();
     private MutableLiveData<ActivationResponse> checkActive = new MutableLiveData<>();
     private MutableLiveData<ProfileResponse> profileResult = new MutableLiveData<>();
+    private MutableLiveData<PremiumResponse> checkResult = new MutableLiveData<>();
+    private MutableLiveData<GenratedKey> genratedKeyResult = new MutableLiveData<>();
+//    private MutableLiveData<TransferdKey> getTransferedKeyResult = new MutableLiveData<>();
 
     public AuthentictionViewModel(AuthenticationRepository repository) {
         this.repository = repository;
+    }
+
+    public LiveData<PremiumResponse> getPremiumResult() {
+        return checkResult;
+    }
+
+    public LiveData<GenratedKey> getGenratedKeyResult() {
+        return genratedKeyResult;
     }
 
     public LiveData<BannerResponse> getResult() {
@@ -78,19 +91,27 @@ public class AuthentictionViewModel extends ViewModel {
     }
 
     public void getAllOrators(String type) {
-        repository.getAllOperators(type,allOperatorsResult);
+        repository.getAllOperators(type, allOperatorsResult);
     }
 
-    public void getRechargePlan(String type, String code, String circleCode){
-        repository.getAllPlan(type, code, circleCode,allPlane);
+    public void getRechargePlan(String type, String code, String circleCode) {
+        repository.getAllPlan(type, code, circleCode, allPlane);
 
     }
 
     public void getActiveStatus(String token, Map<String, Object> body) {
-        repository.checkActive(token,body, checkActive);
+        repository.checkActive(token, body, checkActive);
     }
 
     public void getUserProfile(String token) {
-        repository.getProfile(token,profileResult);
+        repository.getProfile(token, profileResult);
+    }
+
+    public void checkPremium(String token) {
+        repository.checkPremiumSub(token, checkResult);
+    }
+
+    public void getGenerateKey(String token, String paymentID){
+        repository.getGeneratedKey(token,paymentID,genratedKeyResult);
     }
 }

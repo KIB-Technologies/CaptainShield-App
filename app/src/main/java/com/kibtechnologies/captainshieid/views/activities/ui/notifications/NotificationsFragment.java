@@ -45,6 +45,7 @@ public class NotificationsFragment extends Fragment {
                 new ViewModelProvider(this).get(NotificationsViewModel.class);
         View root = inflater.inflate(R.layout.fragment_notifications, container, false);
         final TextView logout = root.findViewById(R.id.logout);
+        final TextView keydata = root.findViewById(R.id.keyId);
         final TextView number = root.findViewById(R.id.user_no);
         logout.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -71,6 +72,11 @@ public class NotificationsFragment extends Fragment {
                // showProgressbar(false);
                 if (profileResponse.getResponse_code() == 200){
                     number.setText(profileResponse.getResponse_data().getPrimaryNumber());
+                    if(profileResponse.premium == true){
+                        keydata.setText("key : "+ profileResponse.key);
+                    }else{
+                        keydata.setText("Key : No Key Available");
+                    }
                 }
             }
         });

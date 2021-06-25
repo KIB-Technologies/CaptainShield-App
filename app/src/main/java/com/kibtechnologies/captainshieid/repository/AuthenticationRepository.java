@@ -5,7 +5,9 @@ import androidx.lifecycle.MutableLiveData;
 import com.kibtechnologies.captainshieid.model.ActivationResponse;
 import com.kibtechnologies.captainshieid.model.AllOpratoersResponse;
 import com.kibtechnologies.captainshieid.model.BannerResponse;
+import com.kibtechnologies.captainshieid.model.GenratedKey;
 import com.kibtechnologies.captainshieid.model.OTPResponse;
+import com.kibtechnologies.captainshieid.model.PremiumResponse;
 import com.kibtechnologies.captainshieid.model.ProfileResponse;
 import com.kibtechnologies.captainshieid.model.RechargePannelUser;
 import com.kibtechnologies.captainshieid.model.RechargePlanResponse;
@@ -25,5 +27,6 @@ public interface AuthenticationRepository {
     void getAllPlan(String type,String code, String circleCode, MutableLiveData<RechargePlanResponse> response);
     void getProfile( String token,MutableLiveData<ProfileResponse> response);
     void checkActive(String token, Map<String, Object > body , MutableLiveData<ActivationResponse> response);
-
+    void checkPremiumSub(String token, MutableLiveData<PremiumResponse> response);
+    void getGeneratedKey(String token,String paymentID,MutableLiveData<GenratedKey> response);
 }

@@ -60,13 +60,13 @@
 
 
             <TextView
-                android:id="@+id/user_profile_name"
                 android:layout_width="wrap_content"
                 android:layout_height="0dp"
                 android:layout_weight="1"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="20dp"
-                android:text="Captan Shiled"
+                android:id="@+id/user_no"
+                android:text="User Number "
                 android:textColor="#fff"
                 android:layout_gravity="center"
                 android:textSize="24sp"
@@ -89,8 +89,8 @@
                     android:elevation="4dp"
                     android:background="@drawable/bg_white_round"
                     android:padding="20dp"
-                    android:id="@+id/user_no"
-                    android:text="User Number " />
+                    android:id="@+id/keyId"
+                    android:text="user key" />
 
                 <TextView
                     android:id="@+id/logout"

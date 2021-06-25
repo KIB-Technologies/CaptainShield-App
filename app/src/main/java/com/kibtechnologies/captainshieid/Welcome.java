@@ -115,28 +115,24 @@ public class Welcome extends Fragment  {
             String number = Message.GetSP(context,"RegisterNumber","register_Number","no");
             System.out.println(welcomeKey);
             System.out.println(number);
-            if(welcomeKey != "no" &&  number != "no"){
-                info = "phone";
-            }else {
-                info = "welcome";
-              //  info = "phone";
-            }
-            onActRet = "privacy";
-        } else if ("Welcome".equals(id)) {
-            v = inflater.inflate(R.layout.welcome, container, false);
-            btn = v.findViewById(R.id.get_welcome);
             info = "phone";
-            onActRet = "welcome";
-            context = v.getContext();
-            int[] ids = {R.id.sub_welcome, R.id.sub_middle_text};
-            for (int i = 0; i < ids.length; i++) {
-                TextView tv = v.findViewById(ids[i]);
-                tv.setTypeface(tf);
-            }
-            activation_key = v.findViewById(R.id.activationkey);
-            registerNumber = v.findViewById(R.id.registerMobileNumber);
-
-        } else if ("Phone".equals(id)) {
+            onActRet = "privacy";
+        }
+//        else if ("Welcome".equals(id)) {
+//            v = inflater.inflate(R.layout.welcome, container, false);
+//            btn = v.findViewById(R.id.get_welcome);
+//            info = "phone";
+//            onActRet = "welcome";
+//            context = v.getContext();
+//            int[] ids = {R.id.sub_welcome, R.id.sub_middle_text};
+//            for (int i = 0; i < ids.length; i++) {
+//                TextView tv = v.findViewById(ids[i]);
+//                tv.setTypeface(tf);
+//            }
+//            activation_key = v.findViewById(R.id.activationkey);
+//            registerNumber = v.findViewById(R.id.registerMobileNumber);
+//        }
+        else if ("Phone".equals(id)) {
             Message.tag("TEST Phone");
             v = inflater.inflate(R.layout.welcome_phone, container, false);
             btn = v.findViewById(R.id.act_welcome_next_btn);
@@ -481,23 +477,25 @@ public class Welcome extends Fragment  {
                                         btn.setText("loading...");
                                         communicator.onWelcome(info);
                                         Message.toast(context,"Privacy policy accepted");
-                } else if (onActRet.equals("welcome")) {
-                    //Activation key works number set
-                    if (registerNumber.getText().toString().length() > 9 && registerNumber.getText().length() < 11) {
-                        if (activation_key.getText().toString().length() > 7 && activation_key.getText().length() < 9) {
-                            if (!activation_key.getText().toString().isEmpty() && !registerNumber.getText().toString().isEmpty()) {
-
-                                        btn.setText("loading...");
-                                        saveUser(createRequest());
-                            }
-                        } else {
-                            Message.toast(context, "Your Activation Code is Invalid, Please Enter Correct Code.");
-                        }//Phone number finish
-                    } else {
-                        Message.toast(context,"Please Enter Valid Number");
-                    }
-
-                } else if (onActRet.equals("phone")) {
+                }
+//                else if (onActRet.equals("welcome")) {
+//                    //Activation key works number set
+//                    if (registerNumber.getText().toString().length() > 9 && registerNumber.getText().length() < 11) {
+//                        if (activation_key.getText().toString().length() > 7 && activation_key.getText().length() < 9) {
+//                            if (!activation_key.getText().toString().isEmpty() && !registerNumber.getText().toString().isEmpty()) {
+//
+//                                        btn.setText("loading...");
+//                                        saveUser(createRequest());
+//                            }
+//                        } else {
+//                            Message.toast(context, "Your Activation Code is Invalid, Please Enter Correct Code.");
+//                        }//Phone number finish
+//                    } else {
+//                        Message.toast(context,"Please Enter Valid Number");
+//                    }
+//
+//                }
+                else if (onActRet.equals("phone")) {
                     Message.tag("TEST Final Button Press");
                     //Phone number set
                     if (con1.getText().toString().length() > 9 && con1.getText().length() < 15 && con1.getText().toString().startsWith("+91")) {
@@ -585,36 +583,36 @@ public class Welcome extends Fragment  {
 
     }
 
-    public void saveUser(UserRequest userRequest) {
-        System.out.println("Under saveUser.");
-        System.out.println(userRequest);
-        Call<UserResponse> userResponseCall = NetworkClient.getUserService().checkKey(userRequest);
-        userResponseCall.enqueue(new Callback<UserResponse>() {
-            @Override
-            public void onResponse(Call<UserResponse> call, Response<UserResponse> response) {
-                System.out.println(response.message());
-                System.out.println(response.body());
-                if (response.isSuccessful()) {
-                    Message.SetSP(context, "Welcomekey", "activation_key", activation_key.getText().toString());
-                    Message.SetSP(context, "RegisterNumber", "register_Number", registerNumber.getText().toString());
-                    Message.toast(context, "Your Code Activate Successfully");
-                    success(context);
-                    communicator.onWelcome(info);
-                } else if(response.code() == 404){
-                    Message.toast(context, "Key Not Found");
-                }else if(response.code() == 400){
-                    Message.toast(context, "Activation Key is Already in Use");
-                }else{
-                    Message.toast(context, "Something wents wrong!");
-                }
-            }
-
-            @Override
-            public void onFailure(Call<UserResponse> call, Throwable t) {
-                Message.toast(context, "Request Failed" + t.getLocalizedMessage());
-            }
-        });
-    }
+//    public void saveUser(UserRequest userRequest) {
+//        System.out.println("Under saveUser.");
+//        System.out.println(userRequest);
+//        Call<UserResponse> userResponseCall = NetworkClient.getUserService().checkKey(userRequest);
+//        userResponseCall.enqueue(new Callback<UserResponse>() {
+//            @Override
+//            public void onResponse(Call<UserResponse> call, Response<UserResponse> response) {
+//                System.out.println(response.message());
+//                System.out.println(response.body());
+//                if (response.isSuccessful()) {
+//                    Message.SetSP(context, "Welcomekey", "activation_key", activation_key.getText().toString());
+//                    Message.SetSP(context, "RegisterNumber", "register_Number", registerNumber.getText().toString());
+//                    Message.toast(context, "Your Code Activate Successfully");
+//                    success(context);
+//                    communicator.onWelcome(info);
+//                } else if(response.code() == 404){
+//                    Message.toast(context, "Key Not Found");
+//                }else if(response.code() == 400){
+//                    Message.toast(context, "Activation Key is Already in Use");
+//                }else{
+//                    Message.toast(context, "Something wents wrong!");
+//                }
+//            }
+//
+//            @Override
+//            public void onFailure(Call<UserResponse> call, Throwable t) {
+//                Message.toast(context, "Request Failed" + t.getLocalizedMessage());
+//            }
+//        });
+//    }
 
     public void hideStatus(View vw) {
         int[] idarray = {R.id.act_welcome_status_1, R.id.act_welcome_status_2, R.id.act_welcome_status_3, R.id.act_welcome_status_4,

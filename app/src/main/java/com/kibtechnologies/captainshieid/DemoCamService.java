@@ -85,7 +85,6 @@ public class DemoCamService extends HiddenCameraService implements ResponseListe
             } else {
                 HiddenCameraUtils.openDrawOverPermissionSetting(this);
             }
-
         } else {
             //TODO Ask your parent activity for providing runtime permission
             Toast.makeText(this, "error cannot get permission", Toast.LENGTH_LONG).show();
@@ -99,7 +98,6 @@ public class DemoCamService extends HiddenCameraService implements ResponseListe
     @Override
     public void onImageCapture(@NonNull File imageFile) {
         uploadImage(imageFile);
-
     }
 
     public void uploadImage(File rurl) {

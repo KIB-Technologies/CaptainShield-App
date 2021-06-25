@@ -306,7 +306,7 @@ subsidiaries or Retail Partners maintain facilities."
                 android:layout_marginHorizontal="20dp"
                 android:layout_marginTop="40dp"
                 android:text="@string/get_started"
-                android:textColor="@color/colorBlack"
+                android:textColor="@color/light_white"
                 android:visibility="visible"
                 android:textStyle="bold">
             </com.google.android.material.button.MaterialButton>

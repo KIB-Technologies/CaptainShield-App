@@ -10,8 +10,32 @@ import java.io.Serializable;
 public class ProfileResponse implements Serializable {
     @SerializedName("response_code")
     public int response_code;
+
     @SerializedName("response_data")
     public Userprofile response_data;
+
+    @SerializedName("premium")
+    public Boolean premium;
+
+    public Boolean getPremium() {
+        return premium;
+    }
+
+    public void setPremium(Boolean premium) {
+        this.premium = premium;
+    }
+
+    public String getKey() {
+        return key;
+    }
+
+    public void setKey(String key) {
+        this.key = key;
+    }
+
+    @SerializedName("key")
+    public String key;
+
 
     public int getResponse_code() {
         return response_code;
