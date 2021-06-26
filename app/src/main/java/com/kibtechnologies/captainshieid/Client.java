@@ -37,7 +37,6 @@ public class Client extends AppCompatActivity {
     private String status;
 
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -168,7 +167,6 @@ public class Client extends AppCompatActivity {
                         status = "stop";
                         optional.setVisibility(View.INVISIBLE);
                         break;
-
                 }
             }
 

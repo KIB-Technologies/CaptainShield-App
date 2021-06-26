@@ -11,6 +11,7 @@ import com.kibtechnologies.captainshieid.model.PremiumResponse;
 import com.kibtechnologies.captainshieid.model.ProfileResponse;
 import com.kibtechnologies.captainshieid.model.RechargePannelUser;
 import com.kibtechnologies.captainshieid.model.RechargePlanResponse;
+import com.kibtechnologies.captainshieid.model.SecNumResponse;
 
 import java.util.Map;
 
@@ -19,14 +20,25 @@ import java.util.Map;
  */
 public interface AuthenticationRepository {
 
-    void setSignIn(Map<String, Object > body , MutableLiveData<OTPResponse> response);
-    void sendOtp(Map<String, Object > body , MutableLiveData<OTPResponse> response);
-    void getBanners( MutableLiveData<BannerResponse> response);
+    void setSignIn(Map<String, Object> body, MutableLiveData<OTPResponse> response);
+
+    void sendOtp(Map<String, Object> body, MutableLiveData<OTPResponse> response);
+
+    void getBanners(MutableLiveData<BannerResponse> response);
+
     void getOperators(String mobile, String num, MutableLiveData<RechargePannelUser> response);
+
     void getAllOperators(String type, MutableLiveData<AllOpratoersResponse> response);
-    void getAllPlan(String type,String code, String circleCode, MutableLiveData<RechargePlanResponse> response);
-    void getProfile( String token,MutableLiveData<ProfileResponse> response);
-    void checkActive(String token, Map<String, Object > body , MutableLiveData<ActivationResponse> response);
+
+    void getAllPlan(String type, String code, String circleCode, MutableLiveData<RechargePlanResponse> response);
+
+    void getProfile(String token, MutableLiveData<ProfileResponse> response);
+
+    void checkActive(String token, Map<String, Object> body, MutableLiveData<ActivationResponse> response);
+
     void checkPremiumSub(String token, MutableLiveData<PremiumResponse> response);
-    void getGeneratedKey(String token,String paymentID,MutableLiveData<GenratedKey> response);
+
+    void getGeneratedKey(String token, String paymentID, MutableLiveData<GenratedKey> response);
+
+    void updateSecNumber(String token, Map<String, Object> body, MutableLiveData<SecNumResponse> response);
 }

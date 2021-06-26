@@ -29,17 +29,30 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.RequiresApi;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SwitchCompat;
+import androidx.lifecycle.LifecycleOwner;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
+import androidx.lifecycle.ViewModelStoreOwner;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.textfield.TextInputEditText;
 import com.kibtechnologies.captainshieid.adapter.DashboardOptionsAdapter;
 import com.kibtechnologies.captainshieid.adapter.ItemClickListener;
+import com.kibtechnologies.captainshieid.model.ActivationResponse;
+import com.kibtechnologies.captainshieid.model.SecNumResponse;
+import com.kibtechnologies.captainshieid.repository.AuthenticationViewModelFactory;
+import com.kibtechnologies.captainshieid.repository.AuthentictionViewModel;
 import com.kibtechnologies.captainshieid.utils.PreferenceUtils;
+import com.kibtechnologies.captainshieid.utils.Util;
+import com.kibtechnologies.captainshieid.views.activities.EnterActivationKeyActivity;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -48,15 +61,17 @@ import retrofit2.Response;
 import static android.content.Context.MODE_PRIVATE;
 
 @TargetApi(Build.VERSION_CODES.HONEYCOMB)
-public class Welcome extends Fragment  {
+public class Welcome extends Fragment {
 
     View v;
     Communicator communicator;
+    private AuthentictionViewModel model;
     private Button btn;
     private String info, onActRet, where, pOnAct;
     private Typeface tf;
     private Context context;
-    private EditText con1, con2, app, secure, /*login_pass*/ activation_key, registerNumber;
+    private EditText con1, con2, app, secure, /*login_pass*/
+            activation_key, registerNumber;
     private TextInputEditText login_pass;
     private DevicePolicyManager mDPM;
     private ComponentName mDeviceApp;
@@ -111,8 +126,8 @@ public class Welcome extends Fragment  {
             v = inflater.inflate(R.layout.activity_privacypolicy1, container, false);
             btn = v.findViewById(R.id.get_started);
             context = v.getContext();
-            String welcomeKey = Message.GetSP(context,"Welcomekey","activation_key","no");
-            String number = Message.GetSP(context,"RegisterNumber","register_Number","no");
+            String welcomeKey = Message.GetSP(context, "Welcomekey", "activation_key", "no");
+            String number = Message.GetSP(context, "RegisterNumber", "register_Number", "no");
             System.out.println(welcomeKey);
             System.out.println(number);
             info = "phone";
@@ -147,23 +162,23 @@ public class Welcome extends Fragment  {
 
             con1 = v.findViewById(R.id.secure_phone_1);
             con1.setText("+91");
-            con2 = v.findViewById(R.id.secure_phone_2);
-            con2.setText("+91");
+//            con2 = v.findViewById(R.id.secure_phone_2);
+//            con2.setText("+91");
 
             String number1 = Message.GetSP(v.getContext(), "Welcome_Phone", "secure_phone1", "no");
-            String number2 = Message.GetSP(v.getContext(), "Welcome_Phone", "secure_phone2", "no");
+//            String number2 = Message.GetSP(v.getContext(), "Welcome_Phone", "secure_phone2", "no");
             if (!number1.equals("no")) {
                 con1.setText(number1);
             }
-            if (!number2.equals("no")) {
-                con2.setText(number2);
-            }
+//            if (!number2.equals("no")) {
+//                con2.setText(number2);
+//            }
 
             TextView tv = v.findViewById(R.id.sub_middle_text);
             tv.setTypeface(tf);
 
             ImageButton contact1 = v.findViewById(R.id.chooseContact1);
-            ImageButton contact2 = v.findViewById(R.id.chooseContact2);
+//            ImageButton contact2 = v.findViewById(R.id.chooseContact2);
             contact1.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -175,16 +190,16 @@ public class Welcome extends Fragment  {
                 }
             });
 
-            contact2.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
-                    intent.setType(ContactsContract.CommonDataKinds.Phone.CONTENT_ITEM_TYPE);
-                    startActivityForResult(intent, 1001);
-                    pOnAct = "two2";
-                    Message.tag("TEST B2 Press");
-                }
-            });
+//            contact2.setOnClickListener(new View.OnClickListener() {
+//                @Override
+//                public void onClick(View v) {
+//                    Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
+//                    intent.setType(ContactsContract.CommonDataKinds.Phone.CONTENT_ITEM_TYPE);
+//                    startActivityForResult(intent, 1001);
+//                    pOnAct = "two2";
+//                    Message.tag("TEST B2 Press");
+//                }
+//            });
 
             //hide status
             if (where.equals("M")) {
@@ -474,9 +489,9 @@ public class Welcome extends Fragment  {
             public void onClick(View v) {
                 if (onActRet.equals("privacy")) {
 
-                                        btn.setText("loading...");
-                                        communicator.onWelcome(info);
-                                        Message.toast(context,"Privacy policy accepted");
+                    btn.setText("loading...");
+                    communicator.onWelcome(info);
+                    Message.toast(context, "Privacy policy accepted");
                 }
 //                else if (onActRet.equals("welcome")) {
 //                    //Activation key works number set
@@ -502,21 +517,28 @@ public class Welcome extends Fragment  {
                         if (con2.getText().toString().isEmpty()) {
                             Message.SetSP(context, "Welcome_Phone", "secure_phone1", con1.getText().toString());
                             if (!where.equals("M")) {
-                                communicator.onWelcome(info);
-                            } else {
-                                success(context);
-                            }
-                        } else {
-                            if (con2.getText().toString().length() > 9 && con2.getText().length() < 15 && con2.getText().toString().startsWith("+91")) {
-                                Message.SetSP(context, "Welcome_Phone", "secure_phone1", con1.getText().toString());
-                                Message.SetSP(context, "Welcome_Phone", "secure_phone2", con2.getText().toString());
-                                if (where.equals("M")) {
-                                    success(context);
+                                model = new ViewModelProvider((ViewModelStoreOwner) context, new AuthenticationViewModelFactory()).get(AuthentictionViewModel.class);
+                                model.updateSecNumber().removeObservers((LifecycleOwner) context);
+                                model.updateSecNumber().observe((LifecycleOwner) context, new Observer<SecNumResponse>() {
+                                    @Override
+                                    public void onChanged(SecNumResponse secNumResponse) {
+                                        if (secNumResponse.response_code == 200) {
+                                            communicator.onWelcome(info);
+                                        } else {
+                                            Message.toast(context, "Something went wrong, Please enter valid number.");
+                                        }
+                                    }
+                                });
+                                Map<String, Object> body = new HashMap<>();
+                                body.put("alternateNumber", con1.getText().toString());
+                                String token = PreferenceUtils.getInstance(context).getToken();
+                                if (Util.isTextValid(con1.getText().toString())) {
+                                    model.updateSecNumber("bearer " + token, body);
                                 } else {
-                                    communicator.onWelcome(info);
+                                    Message.toast(context, "Please enter your correct number");
                                 }
                             } else {
-                                Message.toast(context, "Your second phone number length is invalid, Enter with country code eg +91");
+                                success(context);
                             }
                         }
                     } else {
@@ -577,8 +599,8 @@ public class Welcome extends Fragment  {
         UserRequest userRequest = new UserRequest();
         userRequest.setKey(activation_key.getText().toString());
         userRequest.setPrimaryNumber(registerNumber.getText().toString());
-        String phnNo =  registerNumber.getText().toString();
-                PreferenceUtils.getInstance(context).saveString(PreferenceUtils.USER_PHONE_NO, phnNo);
+        String phnNo = registerNumber.getText().toString();
+        PreferenceUtils.getInstance(context).saveString(PreferenceUtils.USER_PHONE_NO, phnNo);
         return userRequest;
 
     }
@@ -711,7 +733,6 @@ public class Welcome extends Fragment  {
             Message.tag("Something is wrong..!! Reinstall the app");
         }
     }
-
 
 
     interface Communicator {

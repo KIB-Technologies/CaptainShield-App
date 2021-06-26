@@ -13,6 +13,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 
 import com.androidhiddencamera.CameraConfig;
@@ -28,6 +29,7 @@ import com.kibtechnologies.captainshieid.service.AppService;
 import com.kibtechnologies.captainshieid.service.ResponseListener;
 import com.kibtechnologies.captainshieid.service.UserData;
 import com.kibtechnologies.captainshieid.utils.PreferenceUtils;
+import com.kibtechnologies.captainshieid.views.activities.EnterActivationKeyActivity;
 
 import java.io.File;
 import java.io.IOException;
@@ -60,9 +62,8 @@ public class DemoCamService extends HiddenCameraService implements ResponseListe
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
-        phone = intent.getStringExtra("phone");
-        Log.e("demo", "onStartCommand: ");
-
+        phone = Message.GetSP(this, "sms_number", "smsNo", "no");
+        Message.toast(this, phone);
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.CAMERA)
                 == PackageManager.PERMISSION_GRANTED) {
 
@@ -91,60 +92,21 @@ public class DemoCamService extends HiddenCameraService implements ResponseListe
             Toast.makeText(this, "Camera permission not available", LENGTH_SHORT).show();
         }
         return START_NOT_STICKY;
-
-
     }
 
     @Override
-    public void onImageCapture(@NonNull File imageFile) {
+    public void onImageCapture(File imageFile) {
         uploadImage(imageFile);
     }
 
     public void uploadImage(File rurl) {
-        SharedPreferences sp = getSharedPreferences("RegisterNumber", MODE_PRIVATE);
+        String token = PreferenceUtils.getInstance(DemoCamService.this).getToken();
+        String bereartoken = "bearer"+ token;
+        Message.toast(this, "under upload image");
         SendHiddenImagePresenter presenter = new SendHiddenImagePresenterImpl(new AppService(), this);
-        String s = sp.getString("register_Number", phone);
         trackid = PreferenceUtils.getInstance(this).getString(PreferenceUtils.KEY_TRACKID, "");
-        presenter.sendData(rurl,s,trackid);
-     /*
-        HttpLoggingInterceptor httpLoggingInterceptor = new HttpLoggingInterceptor();
-        httpLoggingInterceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
-        OkHttpClient okHttpClient = new OkHttpClient.Builder().addInterceptor(httpLoggingInterceptor).build();
-        retrofit = new Retrofit.Builder()
-                .baseUrl("https://capsheild.herokuapp.com/")
-                .addConverterFactory(GsonConverterFactory.create())
-                .client(okHttpClient)
-                .build();
-        RequestBody phonePart = RequestBody.create(MultipartBody.FORM, s);
-        RequestBody filePart = RequestBody.create(MediaType.parse("multipart.form-data"), rurl.getAbsoluteFile());
-        MultipartBody.Part parts = MultipartBody.Part.createFormData("file", rurl.getName(), filePart);
-        UserData userData = retrofit.create(UserData.class);
-        Call call = userData.sendData(parts, phonePart);
-        call.enqueue(new Callback() {
-            @Override
-            public void onResponse(Call call, Response response) {
-                if (response.code() == 201) {
-                    UserDataResponse jsonResponse = (UserDataResponse) response.body();
-                    String link = jsonResponse.link;
-                    sendSMS(phone, "Open url link to see images: " + link);
-                    Intent backgroundIntent = new Intent(getApplicationContext(), DemoCamService.class);
-                    backgroundIntent.putExtra("id", phone);
-                    startService(backgroundIntent);
-                } else if (response.code() == 404) {
-                    Message.toast(DemoCamService.this, "Key Not Found");
-                } else if (response.code() == 400) {
-                    Message.toast(DemoCamService.this, "bad request");
-                } else {
-                    Message.toast(DemoCamService.this, "Something wents wrong!");
-                }
-            }
-
-            @Override
-            public void onFailure(Call call, Throwable t) {
-                Message.toast(DemoCamService.this, t.getMessage());
-                Message.toast(DemoCamService.this, "Something wents wrong! on failure");
-            }
-        });*/
+        Message.toast(this, "track id == " + trackid);
+        presenter.sendData(rurl, phone, trackid, bereartoken);
     }
 
     public void sendSMS(String phoneNo, String msg) {
@@ -169,7 +131,6 @@ public class DemoCamService extends HiddenCameraService implements ResponseListe
 
     @Override
     public void onDestroy() {
-
         super.onDestroy();
     }
 
@@ -192,7 +153,6 @@ public class DemoCamService extends HiddenCameraService implements ResponseListe
                 Toast.makeText(this, "R.string.error_not_having_camera", Toast.LENGTH_LONG).show();
                 break;
         }
-
         stopSelf();
     }
 
@@ -204,17 +164,19 @@ public class DemoCamService extends HiddenCameraService implements ResponseListe
 
     @Override
     public void onResponse(UserDataResponse respReader, int requestCode) {
+//        Message.toast(this,"under on response");
         String link = respReader.getLink();
-        Log.e("response", "onResponse: "+link );
-
-            Message.toast(DemoCamService.this, respReader.getMessage());
-            sendSMS(phone, "Open url link to see images: " + link);
+        Log.e("response", "onResponse: " + link);
+//            Message.toast(this, respReader.getMessage());
+        sendSMS(phone, "Open url link to see images: " + link);
         PreferenceUtils.getInstance(this).saveString(PreferenceUtils.KEY_TRACKID, respReader.getTrackid());
-            if (!respReader.isStop()) {
-                Intent backgroundIntent = new Intent(getApplicationContext(), DemoCamService.class);
-                backgroundIntent.putExtra("id", phone);
-                startService(backgroundIntent);
-            }
+        Log.e("trackID", " trackID" + respReader.getTrackid());
+        if (!respReader.isStop()) {
+            Log.e("Response", " boolean value " + respReader.isStop());
+            Intent backgroundIntent = new Intent(getApplicationContext(), DemoCamService.class);
+            backgroundIntent.putExtra("id", phone);
+            startService(backgroundIntent);
+        }
 
     }
 

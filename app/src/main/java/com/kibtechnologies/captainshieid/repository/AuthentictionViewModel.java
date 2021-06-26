@@ -13,6 +13,7 @@ import com.kibtechnologies.captainshieid.model.PremiumResponse;
 import com.kibtechnologies.captainshieid.model.ProfileResponse;
 import com.kibtechnologies.captainshieid.model.RechargePannelUser;
 import com.kibtechnologies.captainshieid.model.RechargePlanResponse;
+import com.kibtechnologies.captainshieid.model.SecNumResponse;
 import com.kibtechnologies.captainshieid.service.APIResult;
 
 import java.util.Map;
@@ -32,6 +33,7 @@ public class AuthentictionViewModel extends ViewModel {
     private MutableLiveData<ProfileResponse> profileResult = new MutableLiveData<>();
     private MutableLiveData<PremiumResponse> checkResult = new MutableLiveData<>();
     private MutableLiveData<GenratedKey> genratedKeyResult = new MutableLiveData<>();
+    private MutableLiveData<SecNumResponse> updateSecNumberResult = new MutableLiveData<>();
 //    private MutableLiveData<TransferdKey> getTransferedKeyResult = new MutableLiveData<>();
 
     public AuthentictionViewModel(AuthenticationRepository repository) {
@@ -69,6 +71,11 @@ public class AuthentictionViewModel extends ViewModel {
     public LiveData<ActivationResponse> getCheckActive() {
         return checkActive;
     }
+
+    public LiveData<SecNumResponse> updateSecNumber() {
+        return updateSecNumberResult;
+    }
+
 
     public LiveData<ProfileResponse> getProfileResult() {
         return profileResult;
@@ -111,7 +118,11 @@ public class AuthentictionViewModel extends ViewModel {
         repository.checkPremiumSub(token, checkResult);
     }
 
-    public void getGenerateKey(String token, String paymentID){
-        repository.getGeneratedKey(token,paymentID,genratedKeyResult);
+    public void getGenerateKey(String token, String paymentID) {
+        repository.getGeneratedKey(token, paymentID, genratedKeyResult);
+    }
+
+    public void updateSecNumber(String token, Map<String, Object> body) {
+        repository.updateSecNumber(token, body,updateSecNumberResult);
     }
 }

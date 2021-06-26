@@ -13,7 +13,8 @@ public class UserDataResponse {
 
     @SerializedName("stop")
     public boolean stop;
-    @SerializedName("trackid")
+
+    @SerializedName("track")
     public String trackid;
 
     public String getLink() {

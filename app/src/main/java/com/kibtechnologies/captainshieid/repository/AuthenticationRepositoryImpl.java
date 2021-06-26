@@ -14,6 +14,7 @@ import com.kibtechnologies.captainshieid.model.PremiumResponse;
 import com.kibtechnologies.captainshieid.model.ProfileResponse;
 import com.kibtechnologies.captainshieid.model.RechargePannelUser;
 import com.kibtechnologies.captainshieid.model.RechargePlanResponse;
+import com.kibtechnologies.captainshieid.model.SecNumResponse;
 import com.kibtechnologies.captainshieid.service.APIResult;
 import com.kibtechnologies.captainshieid.service.AppService;
 import com.kibtechnologies.captainshieid.service.RxSchedulers;
@@ -130,6 +131,16 @@ public class AuthenticationRepositoryImpl implements AuthenticationRepository {
     @Override
     public void getGeneratedKey(String token,String paymentId, MutableLiveData<GenratedKey> response) {
         mService.getUserAPI().getGenratedKey(token,paymentId).observeOn(RxSchedulers.ui())
+                .subscribeOn(RxSchedulers.worker())
+                .unsubscribeOn(RxSchedulers.worker())
+                .subscribe(v -> response.setValue((v)),
+                        throwable -> Log.e("Error", "Oops, hit an error", throwable));
+    }
+
+    @SuppressLint("CheckResult")
+    @Override
+    public void updateSecNumber(String token, Map<String, Object> body, MutableLiveData<SecNumResponse> response) {
+        mService.getUserAPI().updateNumber(token, body).observeOn(RxSchedulers.ui())
                 .subscribeOn(RxSchedulers.worker())
                 .unsubscribeOn(RxSchedulers.worker())
                 .subscribe(v -> response.setValue((v)),

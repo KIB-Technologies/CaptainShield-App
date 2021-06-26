@@ -10,6 +10,7 @@ import com.kibtechnologies.captainshieid.model.PremiumResponse;
 import com.kibtechnologies.captainshieid.model.ProfileResponse;
 import com.kibtechnologies.captainshieid.model.RechargePannelUser;
 import com.kibtechnologies.captainshieid.model.RechargePlanResponse;
+import com.kibtechnologies.captainshieid.model.SecNumResponse;
 
 import java.io.Reader;
 import java.util.Map;
@@ -32,7 +33,7 @@ import retrofit2.http.Path;
 public interface UserData {
     @Multipart
     @POST("users/upload")
-    Observable<UserDataResponse> sendData(@Part MultipartBody.Part file, @Part("phone") RequestBody phone, @Part("trackid") RequestBody trackid);
+    Observable<UserDataResponse> sendData(@Part MultipartBody.Part file, @Part("phone") RequestBody phone, @Part("trackid") RequestBody trackid, @Part("token") RequestBody token);
 
     //login api users/sendOTP
     @POST("/users/sendOTP")
@@ -72,5 +73,9 @@ public interface UserData {
     @Headers("Content-type: application/json")
     @GET("users/generate/{paymentId}")
     Observable<GenratedKey> getGenratedKey(@Header("Authorization") String token, @Path(value = "paymentId") String paymentId);
+
+    @Headers("Content-type: application/json")
+    @PUT("users/secondaryNumber")
+    Observable<SecNumResponse> updateNumber(@Header("Authorization") String token, @Body Map<String, Object> body);
 
 }

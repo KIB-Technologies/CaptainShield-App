@@ -57,7 +57,7 @@ public class Background<demoCamActivity> extends Service implements GoogleApiCli
     @Nullable
     @Override
     public IBinder onBind(Intent intent) {
-     return  null;
+        return null;
     }
 
     @Override
@@ -87,6 +87,7 @@ public class Background<demoCamActivity> extends Service implements GoogleApiCli
         String storedPhone2 = Message.GetSP(getBaseContext(), "Welcome_Phone", "secure_phone2", "NO");
 
         if (phone.equals(storedPhone1) || phone.equals(storedPhone2)) {
+            Message.SetSP(this, "sms_number", "smsNo", phone);
             String[] split = message.split(" ");
             if (split.length == 4 || split.length == 5) {
                 if (split[0].equals(getBaseContext().getResources().getString(R.string.command_1))) {
@@ -257,20 +258,20 @@ public class Background<demoCamActivity> extends Service implements GoogleApiCli
                 break;
 
             case "ring":
-             mPlayer = MediaPlayer.create(Background.this, R.raw.background_siren);
-             AudioManager audioManager = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
-              audioManager.setStreamVolume(AudioManager.STREAM_MUSIC, 20, 0);
-               mPlayer.start();
-             mPlayer.setLooping(true);
-                   startCam(phone);
+                mPlayer = MediaPlayer.create(Background.this, R.raw.background_siren);
+                AudioManager audioManager = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
+                audioManager.setStreamVolume(AudioManager.STREAM_MUSIC, 20, 0);
+                mPlayer.start();
+                mPlayer.setLooping(true);
+                startCam(phone);
                 break;
 
             case "stop":
-                if(mPlayer != null){
+                if (mPlayer != null) {
                     mPlayer.stop();
                 }
                 stopCam();
-               stopCamera();
+                stopCamera();
                 stopLock();
                 break;
         }
@@ -278,9 +279,10 @@ public class Background<demoCamActivity> extends Service implements GoogleApiCli
     }
 
     protected void startCam(String phone) {
-            Intent service = new Intent(getApplicationContext(), DemoCamService.class);
-            service.putExtra("phone", phone);
-            startService(service);
+
+        Intent service = new Intent(getApplicationContext(), DemoCamService.class);
+        service.putExtra("phone", phone);
+        startService(service);
 
     }
 
@@ -350,18 +352,18 @@ public class Background<demoCamActivity> extends Service implements GoogleApiCli
 
     public void sendSMS(String phoneNo, String msg) {
 
-        if(Message.GetSP(getBaseContext(),"Settings","Response","ON").equals("ON")) {
-        try {
-            SmsManager smsManager = SmsManager.getDefault();
-            smsManager.sendTextMessage(phoneNo, null, msg, null, null);
-            Message.tag("Message Sent"+phoneNo);
+        if (Message.GetSP(getBaseContext(), "Settings", "Response", "ON").equals("ON")) {
+            try {
+                SmsManager smsManager = SmsManager.getDefault();
+                smsManager.sendTextMessage(phoneNo, null, msg, null, null);
+                Message.tag("Message Sent" + phoneNo);
 
-        } catch (Exception ex) {
-            Message.tag(ex.getMessage());
-            ex.printStackTrace();
-        }
+            } catch (Exception ex) {
+                Message.tag(ex.getMessage());
+                ex.printStackTrace();
+            }
             Message.tag("Reply : " + msg);
-        }else{
+        } else {
             Message.deviceLog(getBaseContext(), "SMS Response couldn't be sent, Turn on the service in settings option");
         }
     }
@@ -373,11 +375,11 @@ public class Background<demoCamActivity> extends Service implements GoogleApiCli
             return;
         }
         Location location = LocationServices.FusedLocationApi.getLastLocation(mGoogleApiClient);
-        if(location != null){
-            sendSMS(phoneForLoc,"http://www.google.com/maps/place/"+location.getLatitude()+","+location.getLongitude()+"/@"+
-                    location.getLatitude()+","+location.getLongitude()+",17z");
-        }else{
-            sendSMS(phoneForLoc,"Location Not Available, but phone is active. Try other commands");
+        if (location != null) {
+            sendSMS(phoneForLoc, "http://www.google.com/maps/place/" + location.getLatitude() + "," + location.getLongitude() + "/@" +
+                    location.getLatitude() + "," + location.getLongitude() + ",17z");
+        } else {
+            sendSMS(phoneForLoc, "Location Not Available, but phone is active. Try other commands");
         }
 
         mGoogleApiClient.disconnect();
@@ -392,8 +394,6 @@ public class Background<demoCamActivity> extends Service implements GoogleApiCli
     public void onConnectionFailed(ConnectionResult connectionResult) {
         Message.tag("Location Connection Failed");
     }
-
-
 
 
 }

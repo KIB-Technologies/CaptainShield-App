@@ -7,7 +7,7 @@
     <!-- Activation-->
     <string name="act_welcome_text">Follow the steps to setup your app for Captain Shield protection.
         There are 4 more additional setup required to complete the activation process</string>
-    <string name="act_phone_text">Enter one or two phone number with country code eg (+91). Captain Shield will only accept commands from these phone numbers</string>
+    <string name="act_phone_text">Enter alternative phone number with country code eg (+91). Captain Shield will only accept commands from this phone number</string>
     <string name="act_password_text">Enter passcode to open the captain shield application.</string>
     <string name="act_password_secure_text">Enter a secret password, this password will be encrypted
         on your device and gets validated every time when you send remote command</string>

@@ -1,7 +1,10 @@
 package com.kibtechnologies.captainshieid.service;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.kibtechnologies.captainshieid.utils.PreferenceUtils;
 
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
@@ -13,13 +16,12 @@ import retrofit2.converter.gson.GsonConverterFactory;
  * Created by Khushboo Jha on 5/16/21.
  */
 public class AppService {
+
     private Retrofit retrofit ;
     private UserData userAPI;
     private String BASE_URL = "https://capsheild.herokuapp.com/" ;
-    private String BASE_URL_SECOND = "";
 
     public AppService(){
-
         HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
         interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
         OkHttpClient client = new OkHttpClient.Builder().addInterceptor(interceptor).build();
