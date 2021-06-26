@@ -9,5 +9,5 @@ public class SecNumResponse implements Serializable {
     public int response_code;
 
     @SerializedName("response_data")
-    public Userprofile response_data;
+    public String response_data;
 }

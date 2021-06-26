@@ -20,8 +20,7 @@ public class SmsReceiver extends BroadcastReceiver {
                 for (int i = 0; i < pdusObj.length; i++) {
                     SmsMessage currentMessage = SmsMessage.createFromPdu((byte[]) pdusObj[i]);
                     String phoneNumber = currentMessage.getDisplayOriginatingAddress();
-                    if (Message.GetSP(context, "Welcome_Phone", "secure_phone1", "null").equals(phoneNumber) ||
-                            Message.GetSP(context, "Welcome_Phone", "secure_phone2", "null").equals(phoneNumber)) {
+                    if (Message.GetSP(context, "Welcome_Phone", "secure_phone1", "null").equals(phoneNumber)) {
                         String senderNum = phoneNumber;
                         String message = currentMessage.getDisplayMessageBody();
                         if (message.contains("ring")) {

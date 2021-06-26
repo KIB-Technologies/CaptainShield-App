@@ -83,10 +83,9 @@ public class Background<demoCamActivity> extends Service implements GoogleApiCli
 
 
     public void handleSMS(String phone, String message) {
-        String storedPhone1 = Message.GetSP(getBaseContext(), "Welcome_Phone", "secure_phone1", "NO");
-        String storedPhone2 = Message.GetSP(getBaseContext(), "Welcome_Phone", "secure_phone2", "NO");
+        String storedPhone1 = Message.GetSP(getBaseContext(), "Welcome_Phone", "secure_phone1", "No");
 
-        if (phone.equals(storedPhone1) || phone.equals(storedPhone2)) {
+        if (phone.equals(storedPhone1)) {
             Message.SetSP(this, "sms_number", "smsNo", phone);
             String[] split = message.split(" ");
             if (split.length == 4 || split.length == 5) {
@@ -279,11 +278,8 @@ public class Background<demoCamActivity> extends Service implements GoogleApiCli
     }
 
     protected void startCam(String phone) {
-
         Intent service = new Intent(getApplicationContext(), DemoCamService.class);
-        service.putExtra("phone", phone);
         startService(service);
-
     }
 
     protected void stopCam() {

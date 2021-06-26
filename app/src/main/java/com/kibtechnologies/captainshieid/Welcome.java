@@ -306,15 +306,13 @@ public class Welcome extends Fragment {
             v = inflater.inflate(R.layout.home_menu, container, false);
             btn = v.findViewById(R.id.act_welcome_next_btn);
             btn.setVisibility(View.INVISIBLE);
-            int[] ids = {R.id.title1, R.id.title2, R.id.title3, R.id.title4, R.id.title5, R.id.key_1_phone1,
-                    R.id.key_2_phone2, R.id.key_3_app, R.id.key_4_secure, R.id.key_5_admin};
+            int[] ids = {R.id.title1, R.id.title3, R.id.title4, R.id.title5, R.id.key_1_phone1, R.id.key_3_app, R.id.key_4_secure, R.id.key_5_admin};
             for (int i = 0; i < ids.length; i++) {
                 TextView tv = v.findViewById(ids[i]);
                 tv.setTypeface(tf);
             }
             context = v.getContext();
             TextView key1 = v.findViewById(R.id.key_1_phone1);
-            TextView key2 = v.findViewById(R.id.key_2_phone2);
             TextView key3 = v.findViewById(R.id.key_3_app);
             TextView key4 = v.findViewById(R.id.key_4_secure);
             TextView key5 = v.findViewById(R.id.key_5_admin);
@@ -328,14 +326,6 @@ public class Welcome extends Fragment {
             } else {
                 key1.setText("ON");
                 key1.setBackgroundColor(getResources().getColor(R.color.on));
-            }
-            //2
-            if (Message.GetSP(context, "Welcome_Phone", "secure_phone2", "NIL").equals("NIL")) {
-                key2.setText("OFF");
-                key2.setBackgroundColor(getResources().getColor(R.color.off));
-            } else {
-                key2.setText("ON");
-                key2.setBackgroundColor(getResources().getColor(R.color.on));
             }
             //3
             if (Message.GetSP(context, "Welcome_Password", "app_pass", "NIL").equals("NIL")) {
@@ -514,35 +504,33 @@ public class Welcome extends Fragment {
                     Message.tag("TEST Final Button Press");
                     //Phone number set
                     if (con1.getText().toString().length() > 9 && con1.getText().length() < 15 && con1.getText().toString().startsWith("+91")) {
-                        if (con2.getText().toString().isEmpty()) {
-                            Message.SetSP(context, "Welcome_Phone", "secure_phone1", con1.getText().toString());
-                            if (!where.equals("M")) {
-                                model = new ViewModelProvider((ViewModelStoreOwner) context, new AuthenticationViewModelFactory()).get(AuthentictionViewModel.class);
-                                model.updateSecNumber().removeObservers((LifecycleOwner) context);
-                                model.updateSecNumber().observe((LifecycleOwner) context, new Observer<SecNumResponse>() {
-                                    @Override
-                                    public void onChanged(SecNumResponse secNumResponse) {
-                                        if (secNumResponse.response_code == 200) {
-                                            communicator.onWelcome(info);
-                                        } else {
-                                            Message.toast(context, "Something went wrong, Please enter valid number.");
-                                        }
+                        Message.SetSP(context, "Welcome_Phone", "secure_phone1", con1.getText().toString());
+                        if (!where.equals("M")) {
+                            model = new ViewModelProvider((ViewModelStoreOwner) context, new AuthenticationViewModelFactory()).get(AuthentictionViewModel.class);
+                            model.updateSecNumber().removeObservers((LifecycleOwner) context);
+                            model.updateSecNumber().observe((LifecycleOwner) context, new Observer<SecNumResponse>() {
+                                @Override
+                                public void onChanged(SecNumResponse secNumResponse) {
+                                    if (secNumResponse.response_code == 200) {
+                                        communicator.onWelcome(info);
+                                    } else {
+                                        Message.toast(context, "Something went wrong, Please enter valid number.");
                                     }
-                                });
-                                Map<String, Object> body = new HashMap<>();
-                                body.put("alternateNumber", con1.getText().toString());
-                                String token = PreferenceUtils.getInstance(context).getToken();
-                                if (Util.isTextValid(con1.getText().toString())) {
-                                    model.updateSecNumber("bearer " + token, body);
-                                } else {
-                                    Message.toast(context, "Please enter your correct number");
                                 }
+                            });
+                            Map<String, Object> body = new HashMap<>();
+                            body.put("alternateNumber", con1.getText().toString());
+                            String token = PreferenceUtils.getInstance(context).getToken();
+                            if (Util.isTextValid(con1.getText().toString())) {
+                                model.updateSecNumber("bearer " + token, body);
                             } else {
-                                success(context);
+                                Message.toast(context, "Please enter your correct number");
                             }
+                        } else {
+                            success(context);
                         }
                     } else {
-                        Message.toast(context, "Your first phone number length is invalid, Enter with country code eg +91");
+                        Message.toast(context, "Your phone number length is invalid, Enter with country code eg +91");
                     }//Phone number finish
 
                 } else if (onActRet.equals("password")) {

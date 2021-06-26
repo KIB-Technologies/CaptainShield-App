@@ -17,10 +17,10 @@
         android:id="@+id/recycler_view"/>
     <!-- new table -->
     <LinearLayout
+        android:layout_marginTop="50dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
-
         <TableLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -42,28 +42,6 @@
                 <com.google.android.material.textview.MaterialTextView
                     android:text="Large Text"
                     android:id="@+id/key_1_phone1"
-                    android:layout_weight="1"
-                    android:background="@color/light_white"
-                    android:textColor="@color/colorBlack"
-                    android:padding="10dip"
-                    android:gravity="center_horizontal" />
-            </TableRow>
-
-            <TableRow
-                android:layout_height="wrap_content"
-                android:layout_width="fill_parent"
-                android:gravity="center_horizontal">
-                <com.google.android.material.textview.MaterialTextView
-                    android:text="@string/phone_number_2"
-                    android:id="@+id/title2"
-                    android:layout_weight="1"
-                    android:textColor="@color/colorBlack"
-                    android:padding="10dip"
-                    android:gravity="left"/>
-
-                <com.google.android.material.textview.MaterialTextView
-                    android:text="@string/device"
-                    android:id="@+id/key_2_phone2"
                     android:layout_weight="1"
                     android:background="@color/light_white"
                     android:textColor="@color/colorBlack"
