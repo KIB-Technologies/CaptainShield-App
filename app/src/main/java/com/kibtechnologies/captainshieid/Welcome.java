@@ -442,9 +442,9 @@ public class Welcome extends Fragment {
             btn.setVisibility(View.INVISIBLE);
             Button client = v.findViewById(R.id.help_client);
 //            R.id.tv12, R.id.tv13,R.id.tv14,R.id.tv15,
-            int[] ids = {R.id.tv1, R.id.tv2, R.id.tv3, R.id.tv6, R.id.tv7, R.id.tv8, R.id.tv9, R.id.tv10,
-                    R.id.tv11, R.id.tv16, R.id.tv17, R.id.tv18, R.id.tv19, R.id.tv20,
-                    R.id.tv21, R.id.tv22, R.id.tv23, R.id.tv24, R.id.tv25, R.id.tv26, R.id.tv27
+            int[] ids = {R.id.tv1, R.id.tv2, R.id.tv3, R.id.tv6, R.id.tv7, R.id.tv8, R.id.tv9, R.id.tv29,
+                    R.id.tv28, R.id.tv16, R.id.tv17, R.id.tv18, R.id.tv19, R.id.tv20,
+                    R.id.tv21, R.id.tv24, R.id.tv25, R.id.tv26, R.id.tv27
             };
             for (int i = 0; i < ids.length; i++) {
                 TextView tv = v.findViewById(ids[i]);

@@ -63,6 +63,8 @@
     <string name="wifi_name">Wifi Name</string>
     <string name="captain_password_wifioff">captain password wifioff</string>
     <string name="wifi_off">Wifi OFF</string>
+    <string name="erase">Erase Phone</string>
+    <string name="erase_command">captain password erase</string>
     <string name="captain_password_wifion">captain password wifion</string>
     <string name="wifi_on">Wifi ON</string>
     <string name="captain_password_lockdisplay">captain password lockdisplay</string>

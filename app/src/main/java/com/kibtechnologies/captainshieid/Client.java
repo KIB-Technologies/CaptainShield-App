@@ -73,16 +73,16 @@ public class Client extends AppCompatActivity {
         // Spinner Drop down elements
         List<String> categories = new ArrayList<String>();
         categories.add("Select Any Option");
-        categories.add("Lock");
+//        categories.add("Lock");
         categories.add("Erase");
         categories.add("Display Lock");
-        categories.add("Silent Mode");
+//        categories.add("Silent Mode");
         categories.add("Normal Mode");
-        categories.add("Wifi ON");
-        categories.add("Wifi OFF");
+//        categories.add("Wifi ON");
+//        categories.add("Wifi OFF");
         categories.add("Wifi Details");
         categories.add("Location");
-        categories.add("SIM Serial No");
+//        categories.add("SIM Serial No");
         categories.add("Phone Number");
         categories.add("ring");
         categories.add("stop");
@@ -101,69 +101,69 @@ public class Client extends AppCompatActivity {
                 String item = parent.getItemAtPosition(position).toString();
 
                 switch (position) {
+//                    case 1:
+//                        status = "lock";
+//                        optional.setVisibility(View.VISIBLE);
+//                        optional.setHint("Enter new password to lock");
+//
+//                        break;
+
                     case 1:
-                        status = "lock";
-                        optional.setVisibility(View.VISIBLE);
-                        optional.setHint("Enter new password to lock");
-
-                        break;
-
-                    case 2:
                         status = "erase";
                         optional.setVisibility(View.INVISIBLE);
                         break;
 
-                    case 3:
+                    case 2:
                         status = "lockdisplay";
                         optional.setVisibility(View.INVISIBLE);
                         break;
 
-                    case 4:
-                        status = "silent";
-                        optional.setVisibility(View.INVISIBLE);
-                        break;
+//                    case 4:
+//                        status = "silent";
+//                        optional.setVisibility(View.INVISIBLE);
+//                        break;
 
-                    case 5:
+                    case 3:
                         status = "normal";
                         optional.setVisibility(View.INVISIBLE);
                         break;
 
-                    case 6:
-                        status = "wifion";
-                        optional.setVisibility(View.INVISIBLE);
-                        break;
+//                    case 6:
+//                        status = "wifion";
+//                        optional.setVisibility(View.INVISIBLE);
+//                        break;
+//
+//                    case 7:
+//                        status = "wifioff";
+//                        optional.setVisibility(View.INVISIBLE);
+//                        break;
 
-                    case 7:
-                        status = "wifioff";
-                        optional.setVisibility(View.INVISIBLE);
-                        break;
-
-                    case 8:
+                    case 4:
                         status = "wifiname";
                         optional.setVisibility(View.INVISIBLE);
                         break;
 
-                    case 9:
+                    case 5:
                         status = "location";
                         optional.setVisibility(View.INVISIBLE);
                         break;
 
-                    case 10:
-                        status = "siminfo";
-                        optional.setVisibility(View.INVISIBLE);
-                        break;
+//                    case 10:
+//                        status = "siminfo";
+//                        optional.setVisibility(View.INVISIBLE);
+//                        break;
 
-                    case 11:
+                    case 6:
                         status = "phonenumber";
                         optional.setVisibility(View.INVISIBLE);
                         break;
 
-                    case 12:
+                    case 7:
                         status = "ring";
                         optional.setVisibility(View.INVISIBLE);
                         break;
 
-                    case 13:
+                    case 8:
                         status = "stop";
                         optional.setVisibility(View.INVISIBLE);
                         break;

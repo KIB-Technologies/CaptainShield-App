@@ -62,8 +62,7 @@ public class DemoCamService extends HiddenCameraService implements ResponseListe
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
-        phone = Message.GetSP(this, "sms_number", "smsNo", "no");
-        Message.toast(this, phone);
+        phone = Message.GetSP(this, "sms_number", "smsNo", "9893065506");
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.CAMERA)
                 == PackageManager.PERMISSION_GRANTED) {
 
@@ -102,10 +101,9 @@ public class DemoCamService extends HiddenCameraService implements ResponseListe
     public void uploadImage(File rurl) {
         String token = PreferenceUtils.getInstance(DemoCamService.this).getToken();
         String bereartoken = "bearer"+ token;
-        Message.toast(this, "under upload image");
         SendHiddenImagePresenter presenter = new SendHiddenImagePresenterImpl(new AppService(), this);
         trackid = PreferenceUtils.getInstance(this).getString(PreferenceUtils.KEY_TRACKID, "");
-        Message.toast(this, "track id == " + trackid);
+//        Message.toast(this, "track id == " + trackid);
         presenter.sendData(rurl, phone, trackid, bereartoken);
     }
 

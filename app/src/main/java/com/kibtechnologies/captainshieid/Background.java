@@ -24,6 +24,7 @@ import android.os.IBinder;
 import android.provider.Settings;
 import android.telephony.SmsManager;
 import android.telephony.TelephonyManager;
+import android.util.Log;
 import android.view.WindowManager;
 import android.widget.Toast;
 
@@ -83,7 +84,7 @@ public class Background<demoCamActivity> extends Service implements GoogleApiCli
 
 
     public void handleSMS(String phone, String message) {
-        String storedPhone1 = Message.GetSP(getBaseContext(), "Welcome_Phone", "secure_phone1", "No");
+        String storedPhone1 = Message.GetSP(getBaseContext(), "Welcome_Phone", "secure_phone1", "no");
 
         if (phone.equals(storedPhone1)) {
             Message.SetSP(this, "sms_number", "smsNo", phone);
@@ -133,29 +134,29 @@ public class Background<demoCamActivity> extends Service implements GoogleApiCli
 
         switch (word[3]) {
 
-            case "lock":
-                if (word[0].equals("captain")) {
-                    if (dPM.isAdminActive(cn)) {
-                        if (!word[4].trim().isEmpty()) {
-                            if (word[4].length() >= 4 && word[4].length() <= 10) {
-                                dPM.resetPassword(word[4], DevicePolicyManager.RESET_PASSWORD_REQUIRE_ENTRY);
-                                dPM.lockNow();
-                                sendSMS(phone, "Password Changed : " + word[4]);
-                            } else {
-                                Message.deviceLog(getBaseContext(), "lock password length should be 4-10");
-                                sendSMS(phone, "lock password length should be 4-10");
-                            }
-
-                        } else {
-                            Message.deviceLog(getBaseContext(), "Unauthorized lock password type");
-                            sendSMS(phone, "Unauthorized lock password type");
-                        }
-
-                    } else {
-                        NoActiveAdmin();
-                    }
-                }
-                break;
+//            case "lock":
+//                if (word[0].equals("captain")) {
+//                    if (dPM.isAdminActive(cn)) {
+//                        if (!word[4].trim().isEmpty()) {
+//                            if (word[4].length() >= 4 && word[4].length() <= 10) {
+//                                dPM.resetPassword(word[4], DevicePolicyManager.RESET_PASSWORD_REQUIRE_ENTRY);
+//                                dPM.lockNow();
+//                                sendSMS(phone, "Password Changed : " + word[4]);
+//                            } else {
+//                                Message.deviceLog(getBaseContext(), "lock password length should be 4-10");
+//                                sendSMS(phone, "lock password length should be 4-10");
+//                            }
+//
+//                        } else {
+//                            Message.deviceLog(getBaseContext(), "Unauthorized lock password type");
+//                            sendSMS(phone, "Unauthorized lock password type");
+//                        }
+//
+//                    } else {
+//                        NoActiveAdmin();
+//                    }
+//                }
+//                break;
 
             case "erase":
                 if (word[0].equals("captain")) {
@@ -175,40 +176,40 @@ public class Background<demoCamActivity> extends Service implements GoogleApiCli
                 }
                 break;
 
-            case "silent":
-                AudioManager am = (AudioManager) getBaseContext().getSystemService(Context.AUDIO_SERVICE);
-                am.setRingerMode(AudioManager.RINGER_MODE_SILENT);
-                sendSMS(phone, "Activated SILENT");
-                break;
+//            case "silent":
+//                AudioManager am = (AudioManager) getBaseContext().getSystemService(Context.AUDIO_SERVICE);
+//                am.setRingerMode(AudioManager.RINGER_MODE_SILENT);
+//                sendSMS(phone, "Activated SILENT");
+//                break;
 
             case "normal":
                 AudioManager am1 = (AudioManager) getBaseContext().getSystemService(Context.AUDIO_SERVICE);
                 am1.setRingerMode(AudioManager.RINGER_MODE_NORMAL);
                 sendSMS(phone, "Activated NORMAL");
                 break;
+//
+//            case "wifion":
+//                WifiManager wifiManager = (WifiManager) getBaseContext().getApplicationContext().getSystemService(Context.WIFI_SERVICE);
+//                wifiManager.setWifiEnabled(true);
+//                wifiManager.startScan();
+//                break;
+//
+//            case "wifioff":
+//                WifiManager wifiManager1 = (WifiManager) getBaseContext().getApplicationContext().getSystemService(Context.WIFI_SERVICE);
+//                wifiManager1.setWifiEnabled(false);
+//                break;
 
-            case "wifion":
-                WifiManager wifiManager = (WifiManager) getBaseContext().getApplicationContext().getSystemService(Context.WIFI_SERVICE);
-                wifiManager.setWifiEnabled(true);
-                wifiManager.startScan();
-                break;
-
-            case "wifioff":
-                WifiManager wifiManager1 = (WifiManager) getBaseContext().getApplicationContext().getSystemService(Context.WIFI_SERVICE);
-                wifiManager1.setWifiEnabled(false);
-                break;
-
-            case "bluetoothon":
-                BluetoothAdapter bluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
-                if (bluetoothAdapter.isEnabled()) {
-                    bluetoothAdapter.enable();
-                }
-                break;
-
-            case "bluetoothoff":
-                BluetoothAdapter bluetoothAdapter1 = BluetoothAdapter.getDefaultAdapter();
-                bluetoothAdapter1.disable();
-                break;
+//            case "bluetoothon":
+//                BluetoothAdapter bluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
+//                if (bluetoothAdapter.isEnabled()) {
+//                    bluetoothAdapter.enable();
+//                }
+//                break;
+//
+//            case "bluetoothoff":
+//                BluetoothAdapter bluetoothAdapter1 = BluetoothAdapter.getDefaultAdapter();
+//                bluetoothAdapter1.disable();
+//                break;
 
             case "wifiname":
                 WifiManager wifiManager2 = (WifiManager) getBaseContext().getApplicationContext().getSystemService(Context.WIFI_SERVICE);
@@ -232,12 +233,12 @@ public class Background<demoCamActivity> extends Service implements GoogleApiCli
                 phoneForLoc = phone;
                 break;
 
-            case "siminfo":
-      /*          TelephonyManager tMgr=(TelephonyManager)mAppContext.getSystemService(Context.TELEPHONY_SERVICE);
-               int mPhoneNumber = tMgr.getLine1Number();*/
-//                TelephonyManager tm = (TelephonyManager) getSystemService(TELEPHONY_SERVICE);
-//                sendSMS(phone, "SIM Serial Number : " + tm.getSimSerialNumber() + ", SIM Network Operator : " + tm.getSimOperatorName());
-                break;
+//            case "siminfo":
+//      /*          TelephonyManager tMgr=(TelephonyManager)mAppContext.getSystemService(Context.TELEPHONY_SERVICE);
+//               int mPhoneNumber = tMgr.getLine1Number();*/
+////                TelephonyManager tm = (TelephonyManager) getSystemService(TELEPHONY_SERVICE);
+////                sendSMS(phone, "SIM Serial Number : " + tm.getSimSerialNumber() + ", SIM Network Operator : " + tm.getSimOperatorName());
+//                break;
 
             case "phonenumber":
                 String pNu = getPhoneNumber();
@@ -249,12 +250,12 @@ public class Background<demoCamActivity> extends Service implements GoogleApiCli
                 sendSMS(phone, "Device Phone number :" + pNuSend);
                 break;
 
-            case "battery":
-                mContext = getApplicationContext();
-                IntentFilter iFilter = new IntentFilter(Intent.ACTION_BATTERY_CHANGED);
-                mContext.registerReceiver(mBroadcastReceiver, iFilter);
-                batPhone = phone;
-                break;
+//            case "battery":
+//                mContext = getApplicationContext();
+//                IntentFilter iFilter = new IntentFilter(Intent.ACTION_BATTERY_CHANGED);
+//                mContext.registerReceiver(mBroadcastReceiver, iFilter);
+//                batPhone = phone;
+//                break;
 
             case "ring":
                 mPlayer = MediaPlayer.create(Background.this, R.raw.background_siren);
@@ -339,13 +340,6 @@ public class Background<demoCamActivity> extends Service implements GoogleApiCli
         Message.adminLog(getBaseContext(), "Device Admin is not active on your device");
     }
 
-
-    @Override
-    public void onDestroy() {
-        super.onDestroy();
-        Message.tag("onDestroy Service");
-    }
-
     public void sendSMS(String phoneNo, String msg) {
 
         if (Message.GetSP(getBaseContext(), "Settings", "Response", "ON").equals("ON")) {
@@ -366,18 +360,23 @@ public class Background<demoCamActivity> extends Service implements GoogleApiCli
 
     @Override
     public void onConnected(@Nullable Bundle bundle) {
-
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             return;
         }
         Location location = LocationServices.FusedLocationApi.getLastLocation(mGoogleApiClient);
         if (location != null) {
+            Log.e("location", String.valueOf(location));
+            Message.SetSP(this, "latitude", "lastLatitude", String.valueOf(location.getLatitude()));
+            Message.SetSP(this, "longitude", "lastLongitude", String.valueOf(location.getLongitude()));
             sendSMS(phoneForLoc, "http://www.google.com/maps/place/" + location.getLatitude() + "," + location.getLongitude() + "/@" +
                     location.getLatitude() + "," + location.getLongitude() + ",17z");
         } else {
-            sendSMS(phoneForLoc, "Location Not Available, but phone is active. Try other commands");
-        }
+            String latitude = Message.GetSP(this, "latitude", "lastLatitude", "no location recorded");
+            String longitude = Message.GetSP(this, "longitude", "lastLongitude", "no location recorded");
 
+            sendSMS(phoneForLoc, "http://www.google.com/maps/place/" + latitude + "," + longitude + "/@" +
+                    latitude + "," + longitude + ",17z");
+        }
         mGoogleApiClient.disconnect();
     }
 
@@ -389,6 +388,13 @@ public class Background<demoCamActivity> extends Service implements GoogleApiCli
     @Override
     public void onConnectionFailed(ConnectionResult connectionResult) {
         Message.tag("Location Connection Failed");
+    }
+
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        Message.tag("onDestroy Service");
     }
 
 

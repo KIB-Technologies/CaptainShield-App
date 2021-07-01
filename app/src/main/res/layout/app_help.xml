@@ -116,27 +116,27 @@
                         android:textColor="@color/light_white" />
                 </TableRow>
 
-                <TableRow
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:gravity="center_horizontal">
+<!--                <TableRow-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:gravity="center_horizontal">-->
 
-                    <com.google.android.material.textview.MaterialTextView
-                        android:id="@+id/tv10"
-                        android:layout_weight="1"
-                        android:gravity="left"
-                        android:textColor="@color/colorBlack"
-                        android:padding="10dip"
-                        android:text="@string/wifi_on" />
+<!--                    <com.google.android.material.textview.MaterialTextView-->
+<!--                        android:id="@+id/tv10"-->
+<!--                        android:layout_weight="1"-->
+<!--                        android:gravity="left"-->
+<!--                        android:textColor="@color/colorBlack"-->
+<!--                        android:padding="10dip"-->
+<!--                        android:text="@string/wifi_on" />-->
 
-                    <com.google.android.material.textview.MaterialTextView
-                        android:id="@+id/tv11"
-                        android:layout_weight="1"
-                        android:background="@color/colorPrimary"
-                        android:padding="10dip"
-                        android:text="@string/captain_password_wifion"
-                        android:textColor="@color/light_white" />
-                </TableRow>
+<!--                    <com.google.android.material.textview.MaterialTextView-->
+<!--                        android:id="@+id/tv11"-->
+<!--                        android:layout_weight="1"-->
+<!--                        android:background="@color/colorPrimary"-->
+<!--                        android:padding="10dip"-->
+<!--                        android:text="@string/captain_password_wifion"-->
+<!--                        android:textColor="@color/light_white" />-->
+<!--                </TableRow>-->
 
 <!--                <TableRow-->
 <!--                    android:layout_width="wrap_content"-->
@@ -159,27 +159,27 @@
 <!--                        android:textColor="#000000" />-->
 <!--                </TableRow>-->
 
-<!--                <TableRow-->
-<!--                    android:layout_width="wrap_content"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:gravity="center_horizontal">-->
+                <TableRow
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal">
 
-<!--                    <com.google.android.material.textview.MaterialTextView-->
-<!--                        android:id="@+id/tv14"-->
-<!--                        android:layout_weight="1"-->
-<!--                        android:gravity="left"-->
-<!--                        android:textColor="@color/colorBlack"-->
-<!--                        android:padding="10dip"-->
-<!--                        android:text="@string/wifi_name" />-->
+                    <com.google.android.material.textview.MaterialTextView
+                        android:id="@+id/tv14"
+                        android:layout_weight="1"
+                        android:gravity="left"
+                        android:textColor="@color/colorBlack"
+                        android:padding="10dip"
+                        android:text="@string/wifi_name" />
 
-<!--                    <com.google.android.material.textview.MaterialTextView-->
-<!--                        android:id="@+id/tv15"-->
-<!--                        android:layout_weight="1"-->
-<!--                        android:background="@color/colorPrimary"-->
-<!--                        android:padding="10dip"-->
-<!--                        android:text="@string/captain_password_wifiname"-->
-<!--                        android:textColor="#000000" />-->
-<!--                </TableRow>-->
+                    <com.google.android.material.textview.MaterialTextView
+                        android:id="@+id/tv15"
+                        android:layout_weight="1"
+                        android:background="@color/colorPrimary"
+                        android:padding="10dip"
+                        android:text="@string/captain_password_wifiname"
+                        android:textColor="#ffffff" />
+                </TableRow>
 
                 <TableRow
                     android:layout_width="wrap_content"
@@ -253,21 +253,43 @@
                     android:gravity="center_horizontal">
 
                     <com.google.android.material.textview.MaterialTextView
-                        android:id="@+id/tv22"
+                        android:id="@+id/tv28"
                         android:layout_weight="1"
                         android:gravity="left"
-                        android:padding="10dip"
                         android:textColor="@color/colorBlack"
-                        android:text="@string/sim_info" />
+                        android:padding="10dip"
+                        android:text="@string/erase" />
 
                     <com.google.android.material.textview.MaterialTextView
-                        android:id="@+id/tv23"
+                        android:id="@+id/tv29"
                         android:layout_weight="1"
                         android:background="@color/colorPrimary"
                         android:padding="10dip"
-                        android:text="@string/captain_password_siminfo"
+                        android:text="@string/erase_command"
                         android:textColor="@color/light_white" />
                 </TableRow>
+
+<!--                <TableRow-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:gravity="center_horizontal">-->
+
+<!--                    <com.google.android.material.textview.MaterialTextView-->
+<!--                        android:id="@+id/tv22"-->
+<!--                        android:layout_weight="1"-->
+<!--                        android:gravity="left"-->
+<!--                        android:padding="10dip"-->
+<!--                        android:textColor="@color/colorBlack"-->
+<!--                        android:text="@string/sim_info" />-->
+
+<!--                    <com.google.android.material.textview.MaterialTextView-->
+<!--                        android:id="@+id/tv23"-->
+<!--                        android:layout_weight="1"-->
+<!--                        android:background="@color/colorPrimary"-->
+<!--                        android:padding="10dip"-->
+<!--                        android:text="@string/captain_password_siminfo"-->
+<!--                        android:textColor="@color/light_white" />-->
+<!--                </TableRow>-->
 
                 <TableRow
                     android:layout_width="wrap_content"

@@ -75,7 +75,7 @@ public class LockScreen extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_enter_pin);
         EditText alt1 = (EditText) findViewById(R.id.alt1);
-        String number1 = Message.GetSP(LockScreen.this, "Welcome_Phone", "secure_phone1", "no");
+        String number1 = Message.GetSP(LockScreen.this, "Welcome_Phone", "secure_phone1", "9893065506");
         if (!number1.equals("no")) {
             alt1.setText(number1);
         }

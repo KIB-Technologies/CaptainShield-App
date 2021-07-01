@@ -46,7 +46,7 @@ public class MainMenu extends AppCompatActivity implements  Welcome.Communicator
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main_menu);
         drawerLayout = (DrawerLayout) findViewById(R.id.drawerLayout);
-       // AutoStartHelper.getInstance(this).getAutoStartPermission(this);
+        AutoStartHelper.getInstance(this).getAutoStartPermission(this);
        // listview = (ListView) findViewById(R.id.drawerList);
        // MyAdapter = new MyAdapter(this);
         //listview.setAdapter(MyAdapter);
@@ -131,11 +131,11 @@ public class MainMenu extends AppCompatActivity implements  Welcome.Communicator
 
     }
 
-//    public void simInsert() {
-//        TelephonyManager tm = (TelephonyManager) getSystemService(Context.TELEPHONY_SERVICE);
-//      //  Message.SetSP(getBaseContext(), "Sim", "SimNo", tm.getSimSerialNumber());
-////        Message.tag(tm.getSimSerialNumber());
-//    }
+    public void simInsert() {
+        TelephonyManager tm = (TelephonyManager) getSystemService(Context.TELEPHONY_SERVICE);
+        Message.SetSP(getBaseContext(), "Sim", "SimNo", tm.getSimSerialNumber());
+        Message.tag(tm.getSimSerialNumber());
+    }
 
     @Override
     public void onRequestPermissionsResult(int requestCode, String permissions[], int[] grantResults) {
